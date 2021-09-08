@@ -13,18 +13,22 @@ const movieSchema = new mongoose.Schema({
 });
 
 const Movie = mongoose.model('Movie', movieSchema);
+
+// Add data to collection
 // const amadeus = new Movie({title: 'Amadeus', year: 1989, score: 9.2, rating: 'R'})
 // amadeus.save()
 
 // const inception = new Movie({title: 'Inception', year: 2000, score: 7, rating: 'PG-13'})
 // inception.save()
 
-// Movie.findOneAndUpdate({title: 'Inception'}, {score: 6}, (err) => {
+// find and update data
+// Movie.findOneAndUpdate({title: 'Inception'}, {score: 7.1}, (err) => {
 //   if(err) {
 //     console.log(err)
 //   }
 // })
 
+// add many to collection
 // Movie.insertMany([
 //   { title: 'Amelie', year: 2001, score: 8.3, rating: 'R'},
 //   { title: 'Alien', year: 1979, score: 8.1, rating: 'R'},
@@ -36,6 +40,18 @@ const Movie = mongoose.model('Movie', movieSchema);
 //   console.log('Inserted movies!')
 //   console.log(data)
 // })
+
+// find and update, then use new updated data
+// Movie.findOneAndUpdate({title: 'Inception'}, {score: 7.2}, {new: true}).then(m => console.log(m))
+
+// deleting data from db
+// Movie.remove({title: "Amelie"}).then(msg => console.log(msg))
+// Movie.deleteMany({year: {$gte: 1999}}).then(msg => console.log(msg))
+
+
+
+
+
 
 
 
