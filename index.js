@@ -46,7 +46,22 @@ const characterSchema = new mongoose.Schema({
 
 const Character = mongoose.model('Character', characterSchema);
 
+const profileSchema = new mongoose.Schema({
+  name: String,
+  avatar: Boolean,
+  character: Array,
+  activeCharacter: String // character ID
+})
 
+const Profile = mongoose.model('Profile', profileSchema)
+
+const rollLogSchema = new mongoose.Schema({
+  // id: 
+  timestamp: Date, //datetime?
+  text: String
+})
+
+const RollLog = mongoose.model('RollLog, rollLogSchema')
 
 
 
