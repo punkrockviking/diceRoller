@@ -3,6 +3,8 @@ const express = require('express')
 const app = express()
 const path = require('path')
 
+const Product = require('./models/product')
+
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
@@ -21,6 +23,20 @@ const connectionString = `mongodb+srv://${clusterName}@cluster0.y81ul.mongodb.ne
 const connector = mongoose.connect(connectionString)
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+// KEEP FOR FINAL APP
 const movieSchema = new mongoose.Schema({
   title: String,
   year: Number,
