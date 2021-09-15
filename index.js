@@ -8,8 +8,9 @@ const Product = require('./models/product')
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
-app.get('/dog', (req, res) => {
-  res.send('Bark bark')
+app.get('/products', async (req, res) => {
+  const products = await Product.find({})
+  res.render('products/index', { products })
 })
 
 app.listen(3000, () => {
@@ -23,19 +24,6 @@ const connectionString = `mongodb+srv://${clusterName}@cluster0.y81ul.mongodb.ne
 const connector = mongoose.connect(connectionString)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 // KEEP FOR FINAL APP
 const movieSchema = new mongoose.Schema({
   title: String,
@@ -44,7 +32,8 @@ const movieSchema = new mongoose.Schema({
   rating: String
 });
 
-const Movie = mongoose.model('Movie', movieSchema);
+export const Movie = mongoose.model('Movie', movieSchema);
+// export default Movie
 
 const characterSchema = new mongoose.Schema({
   // id: randomUUID, // automatically included, right?
@@ -60,7 +49,7 @@ const characterSchema = new mongoose.Schema({
   // defaultAttack: json object
 })
 
-const Character = mongoose.model('Character', characterSchema);
+export const Character = mongoose.model('Character', characterSchema);
 
 const profileSchema = new mongoose.Schema({
   name: String,
@@ -69,7 +58,7 @@ const profileSchema = new mongoose.Schema({
   activeCharacter: String // character ID
 })
 
-const Profile = mongoose.model('Profile', profileSchema)
+export const Profile = mongoose.model('Profile', profileSchema)
 
 const rollLogSchema = new mongoose.Schema({
   // id: 
@@ -77,7 +66,7 @@ const rollLogSchema = new mongoose.Schema({
   text: String
 })
 
-const RollLog = mongoose.model('RollLog, rollLogSchema')
+export const RollLog = mongoose.model('RollLog', rollLogSchema)
 
 
 
