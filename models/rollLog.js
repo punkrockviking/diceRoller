@@ -7,6 +7,6 @@ const rollLogSchema = new mongoose.Schema({
     text: String
   })
   
-export const RollLog = mongoose.model('RollLog', rollLogSchema)
+const RollLog = mongoose.model('RollLog', rollLogSchema)
 
 module.exports = RollLog;

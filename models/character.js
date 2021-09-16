@@ -15,6 +15,6 @@ const characterSchema = new mongoose.Schema({
     // defaultAttack: json object
   })
   
-export const Character = mongoose.model('Character', characterSchema);
+const Character = mongoose.model('Character', characterSchema);
   
 module.exports = Character;
