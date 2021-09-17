@@ -26,7 +26,7 @@ app.get('/', async (req, res) => {
 })
 
   // request for all the characters belonging to a profile
-app.get('/characters', async (req, res) => {
+// app.get('/characters', async (req, res) => {
   
 //   res.send('characters live here')
 //   // const characters = await Character.find({})
@@ -41,4 +41,3 @@ app.get('/session', async (req, res) => {
   .sort({timestamp: -1}).limit(10)
   res.json(rollLog)
 })
-
