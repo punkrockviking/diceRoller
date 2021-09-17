@@ -4,7 +4,11 @@ const mongoose = require('mongoose')
 const rollLogSchema = new mongoose.Schema({
     // id: 
     timestamp: Date, //datetime?
-    text: String
+    text: String,
+    _character: { 
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Character'
+    }
   })
   
 const RollLog = mongoose.model('RollLog', rollLogSchema)

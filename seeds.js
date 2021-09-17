@@ -1,37 +1,58 @@
-const mongoose = require('mongoose')
-const Profile = require('./models/profile')
-const Character = require('./models/character')
-const RollLog = require('./models/rollLog')
+const mongoose = require("mongoose");
+const Profile = require("./models/profile");
+const Character = require("./models/character");
+const RollLog = require("./models/rollLog");
 
-const { clusterName } = require('./config')
-const { randomUUID } = require('crypto')
-const { json } = require('express')
-const { monitorEventLoopDelay } = require('perf_hooks')
-const connectionString = `mongodb+srv://${clusterName}@cluster0.y81ul.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
-const connector = mongoose.connect(connectionString)
-
-
-const characterList = async function() {
-    return await Character.find({})
-}
-
-const seedProfile = {
-    name: 'Dan',
-    avatar: false,
-    characters: characterList,
-    activeCharacter: 'no active character'
-}
-
-Profile.insertMany(seedProfile)
-.then(res => {
-    console.log(res)
-})
-.catch(e => {
-    console.log(e)
-})
+const { clusterName } = require("./config");
+const { randomUUID } = require("crypto");
+const { json } = require("express");
+const { monitorEventLoopDelay } = require("perf_hooks");
+const connectionString = `mongodb+srv://${clusterName}@cluster0.y81ul.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+const connector = mongoose.connect(connectionString);
 
 
+// // fetch character
+// const rollLogGenerator = async () => {
+//   const character = await Character.findOne({ name: 'Brogan'});
+//   console.log(character);
+//   const characterId = character._id
+//   console.log(characterId)
+//   const seedRollLog = {
+//     timestamp: Date(), 
+//     text: '3 + 2 is a 5, bummerski',
+//     _character: new mongoose.Types.ObjectId(characterId)
+//   }
+//   RollLog.create(seedRollLog)
+//     .then((res) => {
+//       console.log(res);
+//     })
+//     .catch((e) => {
+//       console.log(e);
+//     });
+// };
+// rollLogGenerator();
 
+// create roll log with character id
+
+
+// const profileGenerator = async () => {
+//   const characters = await Character.find({});
+//   console.log(characters);
+//   const seedProfile = {
+//     name: "Dan",
+//     avatar: false,
+//     characters: characters,
+//     activeCharacter: "no active character",
+//   };
+//   Profile.insertMany(seedProfile)
+//     .then((res) => {
+//       console.log(res);
+//     })
+//     .catch((e) => {
+//       console.log(e);
+//     });
+// };
+// profileGenerator();
 
 // const seedCharacters = [
 //     {

@@ -1,5 +1,8 @@
 const mongoose = require('mongoose')
 
+const defaultAttackSchema = new mongoose.Schema({
+    info: String 
+})
 
 const characterSchema = new mongoose.Schema({
     // id: randomUUID, // automatically included, right?
@@ -12,7 +15,7 @@ const characterSchema = new mongoose.Schema({
     wis: Number,
     int: Number,
     chr: Number,
-    // defaultAttack: json object
+    defaultAttack: [defaultAttackSchema]
   })
   
 const Character = mongoose.model('Character', characterSchema);
