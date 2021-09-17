@@ -22,7 +22,7 @@ app.get('/', async (req, res) => {
   const profiles = await Profile.find({})
   console.log(profiles)
   res.json({ profiles })
-  console.log('*******************************', req)
+  // console.log('*******************************', req)
 })
 
   // request for all the characters belonging to a profile
