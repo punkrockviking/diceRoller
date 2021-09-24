@@ -7,6 +7,10 @@ const defaultAttackSchema = new mongoose.Schema({
 const characterSchema = new mongoose.Schema({
     // id: randomUUID, // automatically included, right?
     name: String,
+    _profile: { 
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Profile'
+    },
     class: String,
     level: Number, // integer?
     str: Number,

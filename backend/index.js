@@ -5,8 +5,8 @@ const app = express()
 
 const { Character, Profile, RollLog } = require('./models')
 
-app.listen(3000, () => {
-  console.log("App is listening on port 3000")
+app.listen(8000, () => {
+  console.log("App is listening on port 8000")
 })
 
 const { clusterName } = require('./config')
@@ -17,7 +17,7 @@ const connector = mongoose.connect(connectionString)
 
 
 // establish home route which would have the profiles information
-app.get('/', async (req, res) => {
+app.get('/profiles', async (req, res) => {
   // res.send('profiles live here')      
   const profiles = await Profile.find({})
   console.log(profiles)
@@ -36,8 +36,10 @@ app.get('/', async (req, res) => {
 app.get('/session', async (req, res) => {
 
   // res.send('rollLog lives here')
-  const characterId = req.query.characterId
-  const rollLog = await RollLog.find({_character: characterId })
-  .sort({timestamp: -1}).limit(10)
-  res.json(rollLog)
+  const profileId = req.query.profileId
+  const characters = await Character.find({ _profile: profileId});
+  res.json(characters)
+  // const rollLog = await RollLog.find({_character: characterId })
+  // .sort({timestamp: -1}).limit(10)
+  // res.json(rollLog)
 })

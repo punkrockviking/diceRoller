@@ -12,99 +12,114 @@ const connector = mongoose.connect(connectionString);
 
 
 // // fetch character
-// const rollLogGenerator = async () => {
-//   const character = await Character.findOne({ name: 'Brogan'});
-//   console.log(character);
-//   const characterId = character._id
-//   console.log(characterId)
-//   const seedRollLog = {
-//     timestamp: Date(), 
-//     text: '3 + 2 is a 5, bummerski',
-//     _character: new mongoose.Types.ObjectId(characterId)
-//   }
-//   RollLog.create(seedRollLog)
-//     .then((res) => {
-//       console.log(res);
-//     })
-//     .catch((e) => {
-//       console.log(e);
-//     });
-// };
+const rollLogGenerator = async () => {
+  const character = await Character.findOne({ name: 'Brogan'});
+  console.log(character);
+  const characterId = character._id
+  console.log(characterId)
+  const seedRollLog = {
+    timestamp: Date(), 
+    text: 'does this still work?',
+    _character: new mongoose.Types.ObjectId(characterId)
+  }
+  RollLog.create(seedRollLog)
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+};
 // rollLogGenerator();
 
 // create roll log with character id
 
 
-// const profileGenerator = async () => {
-//   const characters = await Character.find({});
-//   console.log(characters);
-//   const seedProfile = {
-//     name: "Dan",
-//     avatar: false,
-//     characters: characters,
-//     activeCharacter: "no active character",
-//   };
-//   Profile.insertMany(seedProfile)
-//     .then((res) => {
-//       console.log(res);
-//     })
-//     .catch((e) => {
-//       console.log(e);
-//     });
-// };
+const profileGenerator = async () => {
+  const seedProfiles = [{
+    name: "Dan",
+    avatar: false,
+    activeCharacter: "no active character",
+  },
+  {
+    name: "Pat",
+    avatar: false,
+    activeCharacter: "no active character",
+  }];
+  Profile.insertMany(seedProfiles)
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+};
 // profileGenerator();
 
-// const seedCharacters = [
-//     {
-//         name: 'Leofric',
-//         class: 'Fighter',
-//         level: 4,
-//         str: 18,
-//         dex: 14,
-//         con: 16,
-//         wis: 12,
-//         int: 8,
-//         chr: 10
-//     },
-//     {
-//         name: 'Brogan',
-//         class: 'Barbarian',
-//         level: 8,
-//         str: 18,
-//         dex: 14,
-//         con: 18,
-//         wis: 12,
-//         int: 8,
-//         chr: 10
-//     },
-//     {
-//         name: 'Zaag',
-//         class: 'Warlock',
-//         level: 2,
-//         str: 8,
-//         dex: 12,
-//         con: 13,
-//         wis: 12,
-//         int: 8,
-//         chr: 18
-//     },
-//     {
-//         name: 'Oleg',
-//         class: 'Wizard',
-//         level: 1,
-//         str: 8,
-//         dex: 13,
-//         con: 15,
-//         wis: 12,
-//         int: 18,
-//         chr: 10
-//     },
-// ]
+const characterGenerator = async () => {
+  const profile = await Profile.findOne({ name: 'Dan'});
+  console.log(profile);
+  const profileId = profile._id
+  console.log(profileId)
 
-// Character.insertMany(seedCharacters)
-// .then(res => {
-//     console.log(res)
-// })
-// .catch(e => {
-//     console.log(e)
-// })
+const seedCharacters = [
+    {
+        name: 'Leofric',
+        _profile: profileId,
+        class: 'Fighter',
+        level: 4,
+        str: 18,
+        dex: 14,
+        con: 16,
+        wis: 12,
+        int: 8,
+        chr: 10
+    },
+    {
+        name: 'Brogan',
+        _profile: profileId,
+        class: 'Barbarian',
+        level: 8,
+        str: 18,
+        dex: 14,
+        con: 18,
+        wis: 12,
+        int: 8,
+        chr: 10
+    },
+    {
+        name: 'Zaag',
+        _profile: profileId,
+        class: 'Warlock',
+        level: 2,
+        str: 8,
+        dex: 12,
+        con: 13,
+        wis: 12,
+        int: 8,
+        chr: 18
+    },
+    {
+        name: 'Oleg',
+        _profile: profileId,
+        class: 'Wizard',
+        level: 1,
+        str: 8,
+        dex: 13,
+        con: 15,
+        wis: 12,
+        int: 18,
+        chr: 10
+    },
+]
+
+    Character.insertMany(seedCharacters)
+    .then(res => {
+        console.log(res)
+    })
+    .catch(e => {
+        console.log(e)
+    })
+}
+
+// characterGenerator()
