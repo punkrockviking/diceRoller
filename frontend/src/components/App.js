@@ -1,13 +1,15 @@
 import React from 'react'
 import Profiles from './Profiles'
-import { Button } from "./Button.style"
+import { Button } from './Button.style'
+import Session from './Session'
 
 class App extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             selectedProfile: '',
-            characters: []
+            characters: [],
+            // selectedCharacter: ''
         }
     }
 
@@ -15,7 +17,12 @@ class App extends React.Component {
         // console.log(this)
         event.preventDefault()
         // console.log(event)
-        this.setState( {selectedProfile: event.target.attributes.value.nodeValue }, console.log(this.state) )
+        this.setState( {selectedProfile: event.target.attributes.value.nodeValue}, console.log(this.state) )
+    }
+
+    onCharacterClick = (event) => {
+        event.preventDefault()
+        this.setState( {selectedCharacter: event.target.attributes.value.nodeValue}, console.log(this.state.selectedCharacter) )
     }
 
     componentDidUpdate = (prevProp, prevState) => {
@@ -33,7 +40,8 @@ class App extends React.Component {
                 <div>
                     <div>App Component</div>
                     {this.state.selectedProfile ? (
-                        <div>{JSON.stringify(this.state)}</div>
+                        <Session handleClick={this.onCharacterClick} data={JSON.stringify(this.state)} />
+                        // <Session handleClick={this.onCharacterClick} data={JSON.stringify(this.state)} />
                     ):(
                         <Profiles handleClick={this.onProfileClick} />
                     )}
