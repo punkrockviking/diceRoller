@@ -4,6 +4,7 @@ const app = express()
 // import express from 'express'
 
 const { Character, Profile, RollLog } = require('./models')
+// const { selectedProfile } = require('../frontend/src/app')
 
 app.listen(8000, () => {
   console.log("App is listening on port 8000")
@@ -37,8 +38,11 @@ app.get('/session', async (req, res) => {
 
   // res.send('rollLog lives here')
   const profileId = req.query.profileId
-  const characters = await Character.find({ _profile: profileId});
-  res.json(characters)
+  // const characters = await Character.find({ _profile: profileId});
+  // const sessionCharacter = await Character.fineOne({ _profile: profileId }) // keep your train of thought here
+  const characters = await Character.find({});
+  res.json({ characters })
+  // res.json({ sessionCharacter })
   // const rollLog = await RollLog.find({_character: characterId })
   // .sort({timestamp: -1}).limit(10)
   // res.json(rollLog)

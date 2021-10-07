@@ -3,6 +3,7 @@ import ProfileBanner from './ProfileBanner'
 import InfoBlock from './InfoBlock'
 import MainRoller from './MainRoller'
 import QuickOptions from './QuickOptions'
+import CharacterList from './CharacterList'
 
 
 class Session extends React.Component {
@@ -17,17 +18,36 @@ class Session extends React.Component {
     componentDidMount = () => {
         fetch("/session")
         .then(response => response.json())
-        .then(characters => this.setState(characters), console.log(this.state))
+        .then(characters => this.setState(characters))
+        // .then(console.log('characters are', this.state.characters))
     }
 
-    //  const characters = props.data.characters.map((character) => {
-    //     return <div>{character}</div>
-    // })
+    onCharacterClick = (event) => {
+        event.preventDefault()
+        // console.log(event)
+        this.setState( {selectedCharacter: event.target.attributes.value.value}, console.log('selectedCharacter state updated') )
+    }
+
+    // compnentDidUpdate = () => {
+    //     if (this.state.selectedCharacter !== prevState.selectedCharacter) {
+    //         fetch(`/session?profileId=${this.state.selectedCharacter}`)
+    //         .then(response => response.json())
+    //         .then(characters => this.setState({ characters }))
+    //     }  
+    // }
 
     render() {
         return (
             <div>
-                {this.props.data}
+                {/* {this.props.data} */}
+                <div>
+                    {this.state.selectedCharacter ? (
+                        <div>Selected Character is {this.state.selectedCharacter}</div>
+                    ):(
+                        <CharacterList handleClick={this.onCharacterClick} />
+                    )}
+                </div>
+                
                 <ProfileBanner />
                 <InfoBlock />
                 <MainRoller />

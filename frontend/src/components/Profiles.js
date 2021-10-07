@@ -15,6 +15,7 @@ class Profiles extends React.Component {
         fetch("/profiles")
         .then(response => response.json())
         .then(profiles => this.setState(profiles))
+        .then(console.log(this.state))
     }
 
     

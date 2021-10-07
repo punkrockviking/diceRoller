@@ -9,21 +9,22 @@ class App extends React.Component {
         this.state = {
             selectedProfile: '',
             characters: [],
-            // selectedCharacter: ''
+            selectedCharacter: ''
         }
     }
+
 
     onProfileClick = (event) => {
         // console.log(this)
         event.preventDefault()
         // console.log(event)
-        this.setState( {selectedProfile: event.target.attributes.value.nodeValue}, console.log(this.state) )
+        this.setState( {selectedProfile: event.target.attributes.value.value}, console.log(this.state) )
     }
 
-    onCharacterClick = (event) => {
-        event.preventDefault()
-        this.setState( {selectedCharacter: event.target.attributes.value.nodeValue}, console.log(this.state.selectedCharacter) )
-    }
+    // onCharacterClick = (event) => {
+    //     event.preventDefault()
+    //     this.setState( {selectedCharacter: event.target.attributes.value.nodeValue}, console.log(this.state.selectedCharacter) )
+    // }
 
     componentDidUpdate = (prevProp, prevState) => {
         if (this.state.selectedProfile !== prevState.selectedProfile) {
@@ -33,6 +34,7 @@ class App extends React.Component {
         }   
     }
 
+
     render() {
         // console.log(this.state)
         return (
@@ -40,8 +42,7 @@ class App extends React.Component {
                 <div>
                     <div>App Component</div>
                     {this.state.selectedProfile ? (
-                        <Session handleClick={this.onCharacterClick} data={JSON.stringify(this.state)} />
-                        // <Session handleClick={this.onCharacterClick} data={JSON.stringify(this.state)} />
+                        <Session  data={JSON.stringify(this.state.characters)} />
                     ):(
                         <Profiles handleClick={this.onProfileClick} />
                     )}
@@ -53,5 +54,6 @@ class App extends React.Component {
         )
     }
 }
+
 
 export default App;
