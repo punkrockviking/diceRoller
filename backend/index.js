@@ -38,8 +38,9 @@ app.get('/session', async (req, res) => {
 
   // res.send('rollLog lives here')
   const profileId = req.query.profileId
+  // const characterId = req.query.characterId
   // const characters = await Character.find({ _profile: profileId});
-  // const sessionCharacter = await Character.fineOne({ _profile: profileId }) // keep your train of thought here
+  // const sessionCharacter = await Character.fineOne({ _characters: characterId }) // keep your train of thought here
   const characters = await Character.find({});
   res.json({ characters })
   // res.json({ sessionCharacter })

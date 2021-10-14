@@ -28,11 +28,11 @@ class Session extends React.Component {
         this.setState( {selectedCharacter: event.target.attributes.value.value}, console.log('selectedCharacter state updated') )
     }
 
-    // compnentDidUpdate = () => {
+    // componentDidUpdate = () => {
     //     if (this.state.selectedCharacter !== prevState.selectedCharacter) {
-    //         fetch(`/session?profileId=${this.state.selectedCharacter}`)
+    //         fetch(`/session?characterId=${this.state.selectedCharacter}`)
     //         .then(response => response.json())
-    //         .then(characters => this.setState({ characters }))
+    //         .then(sessionCharacter => this.setState({ selectedCharacter }))
     //     }  
     // }
 
