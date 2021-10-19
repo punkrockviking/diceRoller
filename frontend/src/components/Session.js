@@ -5,6 +5,7 @@ import MainRoller from "./MainRoller";
 import QuickOptions from "./QuickOptions";
 import CharacterList from "./CharacterList";
 import CharacterInfo from "./CharacterInfo";
+import Dice from "./Dice";
 
 class Session extends React.Component {
   constructor(props) {
@@ -77,7 +78,15 @@ class Session extends React.Component {
             />
           )}
         </div>
-
+        <div>
+          <Dice sides="4" />
+          <Dice sides="6" />
+          <Dice sides="8" />
+          <Dice sides="10" />
+          <Dice sides="12" />
+          <Dice sides="20" />
+          <Dice sides="100" />
+        </div>
         <ProfileBanner />
         <InfoBlock />
         <MainRoller />
