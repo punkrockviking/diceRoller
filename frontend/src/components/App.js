@@ -42,14 +42,14 @@ class App extends React.Component {
                 <div>
                     <div>App Component</div>
                     {this.state.selectedProfile ? (
-                        <Session  data={JSON.stringify(this.state.characters)} />
+                        <Session  profile={this.state.selectedProfile} />
                     ):(
                         <Profiles handleClick={this.onProfileClick} />
                     )}
                 </div>
-                <div>
+                {/* <div>
                     <Button backgroundColor='cyan' >Test Button</Button>
-                </div>
+                </div> */}
             </div>
         )
     }
