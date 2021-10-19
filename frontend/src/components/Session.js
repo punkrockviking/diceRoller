@@ -6,6 +6,7 @@ import QuickOptions from "./QuickOptions";
 import CharacterList from "./CharacterList";
 import CharacterInfo from "./CharacterInfo";
 import Dice from "./Dice";
+import Total from "./Total";
 
 class Session extends React.Component {
   constructor(props) {
@@ -26,6 +27,7 @@ class Session extends React.Component {
         chr: null,
         defaultAttack: {},
       },
+      rawRoll: null,
     };
   }
 
@@ -59,14 +61,15 @@ class Session extends React.Component {
     );
   };
 
+  updateTotal = (total) => {
+    this.setState({ rawRoll: total });
+  };
+
   render() {
-    console.log(this.state.selectedCharacter);
     return (
       <div>
-        {/* {this.props.data} */}
         <div>
           {this.state.selectedCharacter._id ? (
-            // <div>Selected Character is {JSON.stringify(this.state.selectedCharacter)}</div>
             <CharacterInfo
               character={this.state.selectedCharacter}
               onStatChange={this.onStatChange}
@@ -79,14 +82,15 @@ class Session extends React.Component {
           )}
         </div>
         <div>
-          <Dice sides="4" />
-          <Dice sides="6" />
-          <Dice sides="8" />
-          <Dice sides="10" />
-          <Dice sides="12" />
-          <Dice sides="20" />
-          <Dice sides="100" />
+          <Dice updateTotal={this.updateTotal} name="D4" sides="4" />
+          <Dice updateTotal={this.updateTotal} name="D6" sides="6" />
+          <Dice updateTotal={this.updateTotal} name="D8" sides="8" />
+          <Dice updateTotal={this.updateTotal} name="D10" sides="10" />
+          <Dice updateTotal={this.updateTotal} name="D12" sides="12" />
+          <Dice updateTotal={this.updateTotal} name="D20" sides="20" />
+          <Dice updateTotal={this.updateTotal} name="D100" sides="100" />
         </div>
+        <Total total={this.state.rawRoll} onDiceClick={this.onDiceClick} />
         <ProfileBanner />
         <InfoBlock />
         <MainRoller />
