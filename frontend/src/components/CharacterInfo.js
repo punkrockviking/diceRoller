@@ -21,11 +21,95 @@ class CharacterInfo extends React.Component {
         <div>
           <form onSubmit={this.onFormSubmit}>
             <label>
+              NAME
+              <input
+                type="string"
+                name="name"
+                value={this.props.character.name}
+                onChange={this.props.onStatChange}
+              />
+            </label>
+          </form>
+
+          <form onSubmit={this.onFormSubmit}>
+            <label>
+              LEVEL
+              <input
+                type="number"
+                name="level"
+                value={this.props.character.level}
+                onChange={this.props.onStatChange}
+              />
+            </label>
+          </form>
+
+          <form onSubmit={this.onFormSubmit}>
+            <label>
               STR
               <input
                 type="number"
                 name="str"
                 value={this.props.character.str}
+                onChange={this.props.onStatChange}
+              />
+            </label>
+          </form>
+
+          <form onSubmit={this.onFormSubmit}>
+            <label>
+              DEX
+              <input
+                type="number"
+                name="dex"
+                value={this.props.character.dex}
+                onChange={this.props.onStatChange}
+              />
+            </label>
+          </form>
+
+          <form onSubmit={this.onFormSubmit}>
+            <label>
+              CON
+              <input
+                type="number"
+                name="con"
+                value={this.props.character.con}
+                onChange={this.props.onStatChange}
+              />
+            </label>
+          </form>
+
+          <form onSubmit={this.onFormSubmit}>
+            <label>
+              WIS
+              <input
+                type="number"
+                name="wis"
+                value={this.props.character.wis}
+                onChange={this.props.onStatChange}
+              />
+            </label>
+          </form>
+
+          <form onSubmit={this.onFormSubmit}>
+            <label>
+              INT
+              <input
+                type="number"
+                name="int"
+                value={this.props.character.int}
+                onChange={this.props.onStatChange}
+              />
+            </label>
+          </form>
+
+          <form onSubmit={this.onFormSubmit}>
+            <label>
+              CHR
+              <input
+                type="number"
+                name="chr"
+                value={this.props.character.chr}
                 onChange={this.props.onStatChange}
               />
             </label>
