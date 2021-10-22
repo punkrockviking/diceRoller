@@ -22,7 +22,7 @@ class CharacterInfo extends React.Component {
 
   onFormSubmit = (event) => {
     event.preventDefault();
-    console.log(this.props.character);
+    // console.log(this.props.character);
     fetch(`/session`, {
       method: "POST",
       headers: {

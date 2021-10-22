@@ -1,16 +1,14 @@
-const mongoose = require('mongoose')
-
+const mongoose = require("mongoose");
 
 const rollLogSchema = new mongoose.Schema({
-    // id: 
-    timestamp: Date, //datetime?
-    text: String,
-    _character: { 
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Character'
-    }
-  })
-  
-const RollLog = mongoose.model('RollLog', rollLogSchema)
+  timestamp: Date, //datetime?
+  text: String,
+  _character: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Character",
+  },
+});
+
+const RollLog = mongoose.model("RollLog", rollLogSchema);
 
 module.exports = RollLog;

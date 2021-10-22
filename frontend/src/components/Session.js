@@ -7,6 +7,10 @@ import CharacterList from "./CharacterList";
 import CharacterInfo from "./CharacterInfo";
 import Dice from "./Dice";
 import Total from "./Total";
+import RollStats from "./RollStats";
+import Proficiency from "./Proficiency";
+import Advantage from "./Advantage";
+import RollLog from "./RollLog";
 
 class Session extends React.Component {
   constructor(props) {
@@ -28,6 +32,7 @@ class Session extends React.Component {
         defaultAttack: {},
       },
       rawRoll: null,
+      rollLog: [],
     };
   }
 
@@ -61,7 +66,7 @@ class Session extends React.Component {
     );
   };
 
-  updateTotal = (total) => {
+  updateRawRoll = (total) => {
     this.setState({ rawRoll: total });
   };
 
@@ -82,15 +87,20 @@ class Session extends React.Component {
           )}
         </div>
         <div>
-          <Dice updateTotal={this.updateTotal} name="D4" sides="4" />
-          <Dice updateTotal={this.updateTotal} name="D6" sides="6" />
-          <Dice updateTotal={this.updateTotal} name="D8" sides="8" />
-          <Dice updateTotal={this.updateTotal} name="D10" sides="10" />
-          <Dice updateTotal={this.updateTotal} name="D12" sides="12" />
-          <Dice updateTotal={this.updateTotal} name="D20" sides="20" />
-          <Dice updateTotal={this.updateTotal} name="D100" sides="100" />
+          <Dice updateRawRoll={this.updateRawRoll} name="D4" sides="4" />
+          <Dice updateRawRoll={this.updateRawRoll} name="D6" sides="6" />
+          <Dice updateRawRoll={this.updateRawRoll} name="D8" sides="8" />
+          <Dice updateRawRoll={this.updateRawRoll} name="D10" sides="10" />
+          <Dice updateRawRoll={this.updateRawRoll} name="D12" sides="12" />
+          <Dice updateRawRoll={this.updateRawRoll} name="D20" sides="20" />
+          <Dice updateRawRoll={this.updateRawRoll} name="D100" sides="100" />
         </div>
         <Total total={this.state.rawRoll} onDiceClick={this.onDiceClick} />
+        <RollLog />
+        CHOOSE YOUR MODIFIERS
+        <RollStats />
+        <Proficiency />
+        <Advantage />
         <ProfileBanner />
         <InfoBlock />
         <MainRoller />

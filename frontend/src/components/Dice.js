@@ -22,7 +22,7 @@ class Dice extends React.Component {
         `You rolled ${this.state.qtyOfDice} D${this.props.sides} for a total of:`,
         totalRoll
       );
-      return this.props.updateTotal(totalRoll);
+      return this.props.updateRawRoll(totalRoll);
     };
     rollDice();
   };
