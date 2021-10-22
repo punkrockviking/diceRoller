@@ -80,10 +80,10 @@ class Session extends React.Component {
                 character={this.state.selectedCharacter}
                 onStatChange={this.onStatChange}
               />
-              {/* <RollLog
-                characterId={this.state.selectedCharacter._id}
+              <RollLog
+                id={this.state.selectedCharacter._id}
                 lastRoll={this.state.rawRoll}
-              /> */}
+              />
             </div>
           ) : (
             <CharacterList

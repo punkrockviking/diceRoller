@@ -8,6 +8,8 @@ class RollLog extends React.Component {
     };
   }
 
+  //FIGURE OUT A WAY TO FIND THE ARRAY WITH THE LOG ENTRIES THEN MAP THROUGH THE ENTRIES!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
   // addToLog = () => {
   //   let newLog = log
   //   newLog.push(lastRoll);
@@ -15,10 +17,10 @@ class RollLog extends React.Component {
   // };
 
   componentDidMount = () => {
-    fetch(`/session?characterId=${this.props.characterId}`)
+    fetch(`/rollLog?characterId=${this.props.id}`)
+      // fetch(`/session`)
       .then((response) => response.json())
-      .then((log) => this.setState(log));
-    // .then(console.log('characters are', this.state.characters))
+      .then((rolllogs) => this.setState({ log: rolllogs }));
   };
   // componentDidMount = () => {
   //   // fetch the roll log from backend
@@ -38,9 +40,15 @@ class RollLog extends React.Component {
 
   render() {
     return (
-      <div>
-        RollLog
-        {this.state.log}
+      <div onClick={() => console.log(this.state)}>
+        RollLog:
+        {/* <div>
+          {this.state.log.map((entry) => (
+            <input key={entry._id} value={entry.text}>
+              {entry.text}
+            </input>
+          ))}
+        </div> */}
       </div>
     );
   }

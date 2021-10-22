@@ -40,16 +40,20 @@ app.get("/profiles", async (req, res) => {
 // })
 
 app.get("/session", async (req, res) => {
-  // res.send('rollLog lives here')
   const profileId = req.query.profileId;
   console.log("Fetching characters from a profileId!!!", profileId);
   const characters = await Character.find({ _profile: profileId });
   res.json({ characters });
+});
+
+app.get("/rollLog", async (req, res) => {
+  // res.send('rollLog lives here')
   const characterId = req.query.characterId;
+  console.log("Fetching rollLogs connected to a characterId!!!");
   const rollLog = await RollLog.find({ _character: characterId })
     .sort({ timestamp: -1 })
     .limit(10);
-  res.json(rollLog);
+  res.json({ rollLog });
 });
 
 app.post("/session", async (req, res) => {
