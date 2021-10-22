@@ -1,24 +1,48 @@
 import React from "react";
 
 class RollLog extends React.Component {
-  componentDidMount = () => {
-    // fetch the roll log from backend
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      log: [],
+    };
+  }
 
-  componentDidUpdate = () => {
-    // post new roll log to backend
-    // console.log(this.props.character);
-    fetch(`/session`, {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(this.props.rollLog),
-    });
+  // addToLog = () => {
+  //   let newLog = log
+  //   newLog.push(lastRoll);
+  //   return newLog;
+  // };
+
+  componentDidMount = () => {
+    fetch(`/session?characterId=${this.props.characterId}`)
+      .then((response) => response.json())
+      .then((log) => this.setState(log));
+    // .then(console.log('characters are', this.state.characters))
   };
+  // componentDidMount = () => {
+  //   // fetch the roll log from backend
+  //   this.setState({
+  //     log: this.props.lastRoll,
+  //   });
+  // };
+
+  // componentDidUpdate = () => {
+  //   // post new roll log to backend
+  //   const arr = this.state.log;
+  //   console.log(arr);
+  //   this.setState({
+  //     log: arr.push(this.props.lastRoll),
+  //   });
+  // };
 
   render() {
-    <div>RollLog</div>;
+    return (
+      <div>
+        RollLog
+        {this.state.log}
+      </div>
+    );
   }
 }
 

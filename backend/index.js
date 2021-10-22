@@ -43,15 +43,13 @@ app.get("/session", async (req, res) => {
   // res.send('rollLog lives here')
   const profileId = req.query.profileId;
   console.log("Fetching characters from a profileId!!!", profileId);
-  // const characterId = req.query.characterId
   const characters = await Character.find({ _profile: profileId });
-  // const sessionCharacter = await Character.fineOne({ _characters: characterId }) // keep your train of thought here
-  // const characters = await Character.find({});
   res.json({ characters });
-  // res.json({ sessionCharacter })
-  // const rollLog = await RollLog.find({_character: characterId })
-  // .sort({timestamp: -1}).limit(10)
-  // res.json(rollLog)
+  const characterId = req.query.characterId;
+  const rollLog = await RollLog.find({ _character: characterId })
+    .sort({ timestamp: -1 })
+    .limit(10);
+  res.json(rollLog);
 });
 
 app.post("/session", async (req, res) => {

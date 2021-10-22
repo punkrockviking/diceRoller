@@ -75,10 +75,16 @@ class Session extends React.Component {
       <div>
         <div>
           {this.state.selectedCharacter._id ? (
-            <CharacterInfo
-              character={this.state.selectedCharacter}
-              onStatChange={this.onStatChange}
-            />
+            <div>
+              <CharacterInfo
+                character={this.state.selectedCharacter}
+                onStatChange={this.onStatChange}
+              />
+              {/* <RollLog
+                characterId={this.state.selectedCharacter._id}
+                lastRoll={this.state.rawRoll}
+              /> */}
+            </div>
           ) : (
             <CharacterList
               characters={this.state.characters}
@@ -96,7 +102,6 @@ class Session extends React.Component {
           <Dice updateRawRoll={this.updateRawRoll} name="D100" sides="100" />
         </div>
         <Total total={this.state.rawRoll} onDiceClick={this.onDiceClick} />
-        <RollLog />
         CHOOSE YOUR MODIFIERS
         <RollStats />
         <Proficiency />
