@@ -32,6 +32,10 @@ class Session extends React.Component {
         defaultAttack: {},
       },
       rawRoll: null,
+      statMod: null,
+      advantage: "",
+      proficiency: "",
+      featMod: "",
       rollLog: [],
     };
   }
@@ -44,6 +48,18 @@ class Session extends React.Component {
         [event.target.name]: event.target.valueAsNumber,
       },
     });
+  };
+
+  onChooseStat = (stat) => {
+    this.setState({
+      statMod: Math.floor((this.state.selectedCharacter[stat] - 10) / 2),
+    });
+    console.log("Your stat mod is ", this.state.statMod);
+  };
+
+  calcTotalRoll = () => {
+    const totalRoll = this.state.rawRoll + this.state.statMod;
+    return totalRoll;
   };
 
   componentDidMount = () => {
@@ -101,9 +117,9 @@ class Session extends React.Component {
           <Dice updateRawRoll={this.updateRawRoll} name="D20" sides="20" />
           <Dice updateRawRoll={this.updateRawRoll} name="D100" sides="100" />
         </div>
-        <Total total={this.state.rawRoll} onDiceClick={this.onDiceClick} />
+        <Total total={this.calcTotalRoll()} onDiceClick={this.onDiceClick} />
         CHOOSE YOUR MODIFIERS
-        <RollStats />
+        <RollStats onChooseStat={this.onChooseStat} />
         <Proficiency />
         <Advantage />
         <ProfileBanner />

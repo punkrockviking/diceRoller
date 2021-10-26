@@ -10,7 +10,8 @@ class RollStats extends React.Component {
 
   onStatClick = (event) => {
     console.log(event.target.value);
-    this.setState({ selectedStat: event.target.value });
+    this.props.onChooseStat(event.target.value);
+    // this.setState({ selectedStat: event.target.value });
     // console.log(this.state.selectedStat);
   };
 

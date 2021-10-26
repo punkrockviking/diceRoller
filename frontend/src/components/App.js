@@ -45,7 +45,10 @@ class App extends React.Component {
           {this.state.selectedProfile ? (
             <Session profile={this.state.selectedProfile} />
           ) : (
-            <Profiles handleClick={this.onProfileClick} />
+            <div>
+              Select a profile:
+              <Profiles handleClick={this.onProfileClick} />
+            </div>
           )}
         </div>
         {/* <div>
