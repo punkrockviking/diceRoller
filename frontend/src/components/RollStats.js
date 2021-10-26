@@ -1,12 +1,12 @@
 import React from "react";
 
 class RollStats extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      selectedStat: "",
-    };
-  }
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     selectedStat: "",
+  //   };
+  // }
 
   onStatClick = (event) => {
     console.log(event.target.value);

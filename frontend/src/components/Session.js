@@ -58,8 +58,10 @@ class Session extends React.Component {
   };
 
   calcTotalRoll = () => {
-    const totalRoll = this.state.rawRoll + this.state.statMod;
-    return totalRoll;
+    if (this.state.rawRoll) {
+      const totalRoll = this.state.rawRoll + this.state.statMod;
+      return totalRoll;
+    }
   };
 
   componentDidMount = () => {
@@ -100,6 +102,39 @@ class Session extends React.Component {
                 id={this.state.selectedCharacter._id}
                 lastRoll={this.state.rawRoll}
               />
+              <div>
+                <Dice updateRawRoll={this.updateRawRoll} name="D4" sides="4" />
+                <Dice updateRawRoll={this.updateRawRoll} name="D6" sides="6" />
+                <Dice updateRawRoll={this.updateRawRoll} name="D8" sides="8" />
+                <Dice
+                  updateRawRoll={this.updateRawRoll}
+                  name="D10"
+                  sides="10"
+                />
+                <Dice
+                  updateRawRoll={this.updateRawRoll}
+                  name="D12"
+                  sides="12"
+                />
+                <Dice
+                  updateRawRoll={this.updateRawRoll}
+                  name="D20"
+                  sides="20"
+                />
+                <Dice
+                  updateRawRoll={this.updateRawRoll}
+                  name="D100"
+                  sides="100"
+                />
+              </div>
+              <Total
+                total={this.calcTotalRoll()}
+                onDiceClick={this.onDiceClick}
+              />
+              CHOOSE YOUR MODIFIERS
+              <RollStats onChooseStat={this.onChooseStat} />
+              <Proficiency />
+              <Advantage />
             </div>
           ) : (
             <CharacterList
@@ -108,20 +143,7 @@ class Session extends React.Component {
             />
           )}
         </div>
-        <div>
-          <Dice updateRawRoll={this.updateRawRoll} name="D4" sides="4" />
-          <Dice updateRawRoll={this.updateRawRoll} name="D6" sides="6" />
-          <Dice updateRawRoll={this.updateRawRoll} name="D8" sides="8" />
-          <Dice updateRawRoll={this.updateRawRoll} name="D10" sides="10" />
-          <Dice updateRawRoll={this.updateRawRoll} name="D12" sides="12" />
-          <Dice updateRawRoll={this.updateRawRoll} name="D20" sides="20" />
-          <Dice updateRawRoll={this.updateRawRoll} name="D100" sides="100" />
-        </div>
-        <Total total={this.calcTotalRoll()} onDiceClick={this.onDiceClick} />
-        CHOOSE YOUR MODIFIERS
-        <RollStats onChooseStat={this.onChooseStat} />
-        <Proficiency />
-        <Advantage />
+
         <ProfileBanner />
         <InfoBlock />
         <MainRoller />
