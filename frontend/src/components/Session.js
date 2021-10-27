@@ -31,10 +31,11 @@ class Session extends React.Component {
         chr: null,
         defaultAttack: {},
       },
+      selectedDice: "",
       rawRoll: null,
       statMod: null,
       advantage: "",
-      proficiency: "",
+      proficient: "",
       featMod: "",
       rollLog: [],
     };
@@ -144,10 +145,10 @@ class Session extends React.Component {
           )}
         </div>
 
-        <ProfileBanner />
+        {/* <ProfileBanner />
         <InfoBlock />
         <MainRoller />
-        <QuickOptions />
+        <QuickOptions /> */}
       </div>
     );
   }
