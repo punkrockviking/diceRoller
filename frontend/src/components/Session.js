@@ -61,6 +61,11 @@ class Session extends React.Component {
   };
 
   calcTotalRoll = () => {
+    // need to conditionally config rolls
+    // nothing helps d100 roll
+    // proficiency only helps d20 rolls
+    // stat may or may not help d4-d12 rolls
+    // etc
     if (this.state.rawRoll) {
       const totalRoll = this.state.rawRoll + this.state.statMod;
       return totalRoll;

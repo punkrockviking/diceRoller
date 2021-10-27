@@ -35,8 +35,11 @@ class Dice extends React.Component {
     return (
       <div>
         <div>
+          <div onClick={this.onDiceClick}>
+            <label>{this.props.name}</label>
+          </div>
           <label>
-            How many dice?
+            Qty?
             <input
               type="number"
               min="1"
@@ -46,9 +49,6 @@ class Dice extends React.Component {
               {this.state.numberOfDice}
             </input>
           </label>
-        </div>
-        <div onClick={this.onDiceClick}>
-          <label>D{this.props.sides}</label>
         </div>
       </div>
     );
