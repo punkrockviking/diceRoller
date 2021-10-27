@@ -11,6 +11,7 @@ import RollStats from "./RollStats";
 import Proficiency from "./Proficiency";
 import Advantage from "./Advantage";
 import RollLog from "./RollLog";
+import RollButton from "./RollButton";
 
 class Session extends React.Component {
   constructor(props) {
@@ -31,7 +32,8 @@ class Session extends React.Component {
         chr: null,
         defaultAttack: {},
       },
-      selectedDice: "",
+      selectedDice: 20,
+      selectedDiceQty: 1,
       rawRoll: null,
       statMod: null,
       advantage: "",
@@ -89,6 +91,14 @@ class Session extends React.Component {
     this.setState({ rawRoll: total });
   };
 
+  updateSelectedDice = (die) => {
+    this.setState({ selectedDice: die });
+  };
+
+  updateSelectedDiceQty = (num) => {
+    this.setState({ selectedDiceQty: num });
+  };
+
   render() {
     return (
       <div>
@@ -104,30 +114,55 @@ class Session extends React.Component {
                 lastRoll={this.state.rawRoll}
               />
               <div>
-                <Dice updateRawRoll={this.updateRawRoll} name="D4" sides="4" />
-                <Dice updateRawRoll={this.updateRawRoll} name="D6" sides="6" />
-                <Dice updateRawRoll={this.updateRawRoll} name="D8" sides="8" />
                 <Dice
-                  updateRawRoll={this.updateRawRoll}
+                  updateSelectedDice={this.updateSelectedDice}
+                  updateSelectedDiceQty={this.updateSelectedDiceQty}
+                  name="D4"
+                  sides="4"
+                />
+                <Dice
+                  updateSelectedDice={this.updateSelectedDice}
+                  updateSelectedDiceQty={this.updateSelectedDiceQty}
+                  name="D6"
+                  sides="6"
+                />
+                <Dice
+                  updateSelectedDice={this.updateSelectedDice}
+                  updateSelectedDiceQty={this.updateSelectedDiceQty}
+                  name="D8"
+                  sides="8"
+                />
+                <Dice
+                  updateSelectedDice={this.updateSelectedDice}
+                  updateSelectedDiceQty={this.updateSelectedDiceQty}
                   name="D10"
                   sides="10"
                 />
                 <Dice
-                  updateRawRoll={this.updateRawRoll}
+                  updateSelectedDice={this.updateSelectedDice}
+                  updateSelectedDiceQty={this.updateSelectedDiceQty}
                   name="D12"
                   sides="12"
                 />
                 <Dice
-                  updateRawRoll={this.updateRawRoll}
+                  updateSelectedDice={this.updateSelectedDice}
+                  updateSelectedDiceQty={this.updateSelectedDiceQty}
                   name="D20"
                   sides="20"
                 />
                 <Dice
-                  updateRawRoll={this.updateRawRoll}
+                  updateSelectedDice={this.updateSelectedDice}
+                  updateSelectedDiceQty={this.updateSelectedDiceQty}
                   name="D100"
                   sides="100"
                 />
               </div>
+              <RollButton
+                sides={this.state.selectedDice}
+                name={`D${this.state.selectedDice}`}
+                qty={this.state.selectedDiceQty}
+                updateRawRoll={this.updateRawRoll}
+              />
               <Total
                 total={this.calcTotalRoll()}
                 onDiceClick={this.onDiceClick}
