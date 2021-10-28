@@ -37,7 +37,7 @@ class Session extends React.Component {
       rawRoll: null,
       statMod: null,
       advantage: "",
-      proficient: "",
+      proficient: null,
       featMod: "",
       rollLog: [],
     };
@@ -102,6 +102,11 @@ class Session extends React.Component {
 
   updateSelectedDiceQty = (num) => {
     this.setState({ selectedDiceQty: num });
+  };
+
+  updateProficient = (mod) => {
+    this.setState({ proficient: mod });
+    console.log(this.state.proficient);
   };
 
   render() {
@@ -174,7 +179,10 @@ class Session extends React.Component {
               />
               CHOOSE YOUR MODIFIERS
               <RollStats onChooseStat={this.onChooseStat} />
-              <Proficiency />
+              <Proficiency
+                level={this.state.selectedCharacter.level}
+                update={this.updateProficient}
+              />
               <Advantage />
             </div>
           ) : (
