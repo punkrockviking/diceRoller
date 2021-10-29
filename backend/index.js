@@ -7,14 +7,18 @@ const bodyParser = require("body-parser");
 const { Character, Profile, RollLog } = require("./models");
 // const { selectedProfile } = require('../frontend/src/app')
 
+
+// require('dotenv').config()
+const { clusterName } = require("./config");
+
 app.listen(8000, () => {
   console.log("App is listening on port 8000");
 });
 
-const { clusterName } = require("./config");
 const { randomUUID } = require("crypto");
 const { json } = require("express");
 const connectionString = `mongodb+srv://${clusterName}@cluster0.y81ul.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+// const connectionString = `mongodb://${clusterName}@cluster0-shard-00-00.y81ul.mongodb.net:27017,cluster0-shard-00-01.y81ul.mongodb.net:27017,cluster0-shard-00-02.y81ul.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-im2a64-shard-0&authSource=admin&retryWrites=true&w=majority`
 const connector = mongoose.connect(connectionString);
 
 app.use(cors());

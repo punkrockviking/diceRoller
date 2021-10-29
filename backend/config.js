@@ -1,5 +1,5 @@
-const dotenv = require('dotenv')
+// const dotenv = require('dotenv')
 
-dotenv.config()
+require('dotenv').config()
 
 module.exports = {clusterName: process.env.CLUSTER_NAME}
