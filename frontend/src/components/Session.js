@@ -109,6 +109,13 @@ class Session extends React.Component {
     console.log(this.state.proficient);
   };
 
+  updateLog = (entries) => {
+    console.log(entries)
+    this.setState({
+      rollLog: entries
+    })
+  }
+
   render() {
     return (
       <div>
@@ -121,6 +128,8 @@ class Session extends React.Component {
               />
               <RollLog
                 id={this.state.selectedCharacter._id}
+                updateLog={this.updateLog}
+                log={this.state.rollLog}
                 lastRoll={this.state.rawRoll}
               />
               <div>

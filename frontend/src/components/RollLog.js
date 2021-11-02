@@ -18,7 +18,6 @@ class RollLog extends React.Component {
 
   componentDidMount = () => {
     fetch(`/rollLog?characterId=${this.props.id}`)
-      // fetch(`/session`)
       .then((response) => response.json())
       .then(({rollLog}) => this.setState({ rollLog }));
   };
@@ -41,10 +40,10 @@ class RollLog extends React.Component {
   render() {
     return (
       <>
-        <div onClick={() => console.log(this.state.rollLog)}>RollLog:</div>
+        <div>RollLog:</div>
         {console.log(this.state)}
         {this.state.rollLog.map((entry) => (
-          <div key={entry._id}>{entry.text}</div>
+          <div key={entry._id}>{entry.timestamp}: {entry.text}</div>
         ))}
       </>
     );
