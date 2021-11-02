@@ -20,7 +20,7 @@ class RollLog extends React.Component {
     fetch(`/rollLog?characterId=${this.props.id}`)
       // fetch(`/session`)
       .then((response) => response.json())
-      .then((rollLog) => this.setState({ rollLog }));
+      .then(({rollLog}) => this.setState({ rollLog }));
   };
   // componentDidMount = () => {
   //   // fetch the roll log from backend
@@ -40,16 +40,13 @@ class RollLog extends React.Component {
 
   render() {
     return (
-      <div onClick={() => console.log(this.state.rollLog)}>
-        RollLog:
-        <div>
-          {/* {this.state.rollLog.rollLog.map((entry) => (
-            <input key={entry._id} value={entry.text}>
-              {entry.text}
-            </input>
-          ))} */}
-        </div>
-      </div>
+      <>
+        <div onClick={() => console.log(this.state.rollLog)}>RollLog:</div>
+        {console.log(this.state)}
+        {this.state.rollLog.map((entry) => (
+          <div key={entry._id}>{entry.text}</div>
+        ))}
+      </>
     );
   }
 }
