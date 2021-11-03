@@ -1,8 +1,8 @@
 import React from "react";
-import ProfileBanner from "./ProfileBanner";
-import InfoBlock from "./InfoBlock";
-import MainRoller from "./MainRoller";
-import QuickOptions from "./QuickOptions";
+// import ProfileBanner from "./ProfileBanner";
+// import InfoBlock from "./InfoBlock";
+// import MainRoller from "./MainRoller";
+// import QuickOptions from "./QuickOptions";
 import CharacterList from "./CharacterList";
 import CharacterInfo from "./CharacterInfo";
 import Dice from "./Dice";
@@ -43,6 +43,8 @@ class Session extends React.Component {
     };
   }
 
+  // const { selectedCharacter, selectedDice, selectedDiceQty, rawRoll, statMod, advantage, proficient, featMod, rollLog} = this.state
+
   onStatChange = (event) => {
     console.log(event);
     this.setState({
@@ -67,8 +69,17 @@ class Session extends React.Component {
     // stat may or may not help d4-d12 rolls
     // etc
     if (this.state.rawRoll) {
-      const totalRoll = this.state.rawRoll + this.state.statMod;
-      return totalRoll;
+      let totalRoll = this.state.rawRoll;
+      if (this.state.selectedDice === 20) {
+        // not working properly. when you switch to a different dice and then back to d20 the proficiency mod does not calc
+        totalRoll = (totalRoll + this.state.statMod + this.state.proficient)
+        return totalRoll
+      } if (this.state.selectedDice === 100) {
+        return totalRoll
+      } else {
+        totalRoll += (this.state.statMod)
+        return totalRoll
+      }
     }
   };
 
