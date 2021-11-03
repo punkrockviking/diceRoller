@@ -8,44 +8,37 @@ class Proficiency extends React.Component {
   //   };
   // }
 
-  calcProficiency = () => {
+  calc = () => {
     if (this.props.level <= 4) {
-      return this.props.update(2);
+      return 2;
     }
     if (this.props.level <= 8) {
-      return this.props.update(3);
+      return 3;
     }
     if (this.props.level <= 12) {
-      return this.props.update(4);
+      return 4;
     }
     if (this.props.level <= 16) {
-      return this.props.update(5);
+      return 5;
     }
     if (this.props.level <= 20) {
-      return this.props.update(6);
+      return 6;
     }
+  }
+
+  calcProficiency = () => {
+    const bonus = this.calc()
+    return this.props.update(bonus)
   };
 
   calcExpertise = () => {
-    if (this.props.level <= 4) {
-      return this.props.update(4);
-    }
-    if (this.props.level <= 8) {
-      return this.props.update(6);
-    }
-    if (this.props.level <= 12) {
-      return this.props.update(8);
-    }
-    if (this.props.level <= 16) {
-      return this.props.update(10);
-    }
-    if (this.props.level <= 20) {
-      return this.props.update(12);
-    }
+    const bonus = this.calc() * 2
+    return this.props.update(bonus)
   };
 
   calcJackOfAllTrades = () => {
-    this.props.update(1);
+    const bonus = Math.floor(this.calc() / 2)
+    this.props.update(bonus);
   };
 
   onProfClick = (event) => {
