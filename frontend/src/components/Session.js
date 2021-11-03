@@ -71,7 +71,6 @@ class Session extends React.Component {
     if (this.state.rawRoll) {
       let totalRoll = this.state.rawRoll;
       if (this.state.selectedDice === 20) {
-        // not working properly. when you switch to a different dice and then back to d20 the proficiency mod does not calc
         totalRoll = (totalRoll + this.state.statMod + this.state.proficient)
         return totalRoll
       } if (this.state.selectedDice === 100) {

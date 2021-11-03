@@ -11,12 +11,12 @@ class Dice extends React.Component {
   onQtyChange = (event) => {
     this.setState({ qtyOfDice: event.target.valueAsNumber });
     this.props.updateSelectedDiceQty(event.target.valueAsNumber);
-    this.props.updateSelectedDice(this.props.sides);
+    this.props.updateSelectedDice(Number(this.props.sides));
   };
 
   onDiceClick = () => {
-    this.props.updateSelectedDice(this.props.sides);
-    this.props.updateSelectedDiceQty(this.state.qtyOfDice);
+    this.props.updateSelectedDice(Number(this.props.sides));
+    this.props.updateSelectedDiceQty(Number(this.state.qtyOfDice));
     // const rollDice = () => {
     //   let totalRoll = 0;
     //   for (let i = 1; i <= this.state.qtyOfDice; i++) {
