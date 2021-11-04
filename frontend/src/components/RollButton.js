@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "./Button.style"
 
 class RollButton extends React.Component {
   onRoll = (event) => {
@@ -21,7 +22,7 @@ class RollButton extends React.Component {
     return (
       <div>
         {`Roll a ${this.props.name} ${this.props.qty} times!`}
-        <button onClick={this.onRoll}>Roll!</button>
+        <Button backgroundColor="lightblue" hoverColor="cyan" onClick={this.onRoll}>Roll!</Button>
       </div>
     );
   }
