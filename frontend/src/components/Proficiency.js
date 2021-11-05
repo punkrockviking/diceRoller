@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "./Button"
 
 class Proficiency extends React.Component {
   // constructor() {
@@ -26,38 +27,41 @@ class Proficiency extends React.Component {
     }
   }
 
-  calcProficiency = () => {
+  calcProficiency = (name) => {
     const bonus = this.calc()
-    return this.props.update(bonus)
+    return this.props.update(name, bonus)
   };
 
-  calcExpertise = () => {
+  calcExpertise = (name) => {
     const bonus = this.calc() * 2
-    return this.props.update(bonus)
+    return this.props.update(name, bonus)
   };
 
-  calcJackOfAllTrades = () => {
+  calcJackOfAllTrades = (name) => {
     const bonus = Math.floor(this.calc() / 2)
-    this.props.update(bonus);
+    this.props.update(name, bonus);
   };
 
   onProfClick = (event) => {
-    if (event.target.value === "proficient") {
-      this.calcProficiency();
-    } else if (event.target.value === "expertise") {
-      this.calcExpertise();
-    } else if (event.target.value === "jackOfAllTrades") {
-      this.calcJackOfAllTrades();
+    const { name } = event.target
+    if (name === this.props.selectedProf.name) {
+      this.props.reset()
+    } else if (name === "proficient") {
+      this.calcProficiency(name);
+    } else if (name === "expertise") {
+      this.calcExpertise(name);
+    } else if (name === "jackOfAllTrades") {
+      this.calcJackOfAllTrades(name);
     }
-    console.log(event.target.value);
+    console.log(name);
   };
 
   render() {
     return (
       <div onClick={this.onProfClick}>
-        <input type="radio" value="proficient" name="proficiency" /> Proficient
-        <input type="radio" value="expertise" name="proficiency" /> Expertise
-        <input type="radio" value="jackOfAllTrades" name="proficiency" /> Jack
+        <Button name="proficient" backgroundColor={this.props.selectedProf.name === "proficient" ? "blue" : "cyan"} > Proficient </Button>
+        <Button name="expertise" backgroundColor={this.props.selectedProf.name === "expertise" ? "blue" : "cyan"} > Expertise </Button>
+        <Button name="jackOfAllTrades" backgroundColor={this.props.selectedProf.name === "jackOfAllTrades" ? "blue" : "cyan"} > Jack </Button>
         of All Trades
       </div>
     );

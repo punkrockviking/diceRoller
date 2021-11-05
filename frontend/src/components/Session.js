@@ -40,7 +40,10 @@ class Session extends React.Component {
         num: null,
       },
       advantage: "",
-      proficient: null,
+      proficient: {
+        name: "",
+        num: null,
+      },
       featMod: "",
       rollLog: [],
     };
@@ -88,7 +91,7 @@ class Session extends React.Component {
     if (this.state.rawRoll) {
       let totalRoll = this.state.rawRoll;
       if (this.state.selectedDice === 20) {
-        totalRoll = (totalRoll + this.state.statMod.num + this.state.proficient)
+        totalRoll = (totalRoll + this.state.statMod.num + this.state.proficient.num)
         return totalRoll
       } if (this.state.selectedDice === 100) {
         return totalRoll
@@ -131,10 +134,23 @@ class Session extends React.Component {
     this.setState({ selectedDiceQty: num });
   };
 
-  updateProficient = (mod) => {
-    this.setState({ proficient: mod });
-    console.log(this.state.proficient);
+  updateProficient = (profName, profNum) => {
+    this.setState({ proficient: {
+      name: profName,
+      num: profNum,
+      } 
+    }, console.log(this.state.proficient));
+    
   };
+
+  resetProfMod = () => {
+    this.setState({
+      proficient: {
+        name: '',
+        num: null,
+      }
+    }, () => console.log(this.state.proficient) )
+  }
 
   updateRollLog = (entries) => {
     console.log(entries)
@@ -218,6 +234,8 @@ class Session extends React.Component {
               <Proficiency
                 level={this.state.selectedCharacter.level}
                 update={this.updateProficient}
+                reset={this.resetProfMod}
+                selectedProf={this.state.proficient}
               />
               <Advantage />
             </div>

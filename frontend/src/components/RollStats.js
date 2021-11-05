@@ -17,12 +17,12 @@ class RollStats extends React.Component {
     const { selectedStatName } = this.props
     return (
       <div onClick={this.onStatClick}>
-        <Button name="str" backgroundColor={selectedStatName === "str" ? "cyan" : "blue"} > STR </Button>
-        <Button name="dex" backgroundColor={selectedStatName === "dex" ? "cyan" : "blue"} > DEX </Button>
-        <Button name="con" backgroundColor={selectedStatName === "con" ? "cyan" : "blue"} > CON </Button>
-        <Button name="wis" backgroundColor={selectedStatName === "wis" ? "cyan" : "blue"} > WIS </Button>
-        <Button name="int" backgroundColor={selectedStatName === "int" ? "cyan" : "blue"} > INT </Button>
-        <Button name="chr" backgroundColor={selectedStatName === "chr" ? "cyan" : "blue"} > CHR </Button>
+        <Button name="str" backgroundColor={selectedStatName === "str" ? "blue" : "cyan"} > STR </Button>
+        <Button name="dex" backgroundColor={selectedStatName === "dex" ? "blue" : "cyan"} > DEX </Button>
+        <Button name="con" backgroundColor={selectedStatName === "con" ? "blue" : "cyan"} > CON </Button>
+        <Button name="wis" backgroundColor={selectedStatName === "wis" ? "blue" : "cyan"} > WIS </Button>
+        <Button name="int" backgroundColor={selectedStatName === "int" ? "blue" : "cyan"} > INT </Button>
+        <Button name="chr" backgroundColor={selectedStatName === "chr" ? "blue" : "cyan"} > CHR </Button>
       </div>
     );
   }
