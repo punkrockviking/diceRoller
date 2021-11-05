@@ -5,11 +5,8 @@ const Button = styled.button`
     height: 50px;
     background-color: ${(props) => props.backgroundColor};
     &:hover {
-        background-color: ${(props) => props.hoverColor};
+        background-color: ${(props) => props.hoverColor || "lightBlue"};
         cursor: pointer;
-    }
-    &:focus {
-        background-color: ${(props) => props.focusColor};
     }
 `
 

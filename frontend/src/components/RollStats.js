@@ -7,8 +7,6 @@ class RollStats extends React.Component {
     const { selectedStatName, resetStatMod, onChooseStat } = this.props
     console.log(event.target.name);
     if (selectedStatName === event.target.name) {
-      console.log('GONNA BLUR HOMIE!!!!!!!!!!!!!', selectedStatName, event.target.name)
-      event.target.blur()
       resetStatMod()
     } else {
       onChooseStat(event.target.name);
@@ -16,14 +14,15 @@ class RollStats extends React.Component {
   };
 
   render() {
+    const { selectedStatName } = this.props
     return (
       <div onClick={this.onStatClick}>
-        <Button name="str" backgroundColor="cyan" hoverColor="lightBlue" focusColor="blue" > STR </Button>
-        <Button name="dex" backgroundColor="cyan" hoverColor="lightBlue" focusColor="blue" > DEX </Button>
-        <Button name="con" backgroundColor="cyan" hoverColor="lightBlue" focusColor="blue" > CON </Button>
-        <Button name="wis" backgroundColor="cyan" hoverColor="lightBlue" focusColor="blue" > WIS </Button>
-        <Button name="int" backgroundColor="cyan" hoverColor="lightBlue" focusColor="blue" > INT </Button>
-        <Button name="chr" backgroundColor="cyan" hoverColor="lightBlue" focusColor="blue" > CHR </Button>
+        <Button name="str" backgroundColor={selectedStatName === "str" ? "cyan" : "blue"} > STR </Button>
+        <Button name="dex" backgroundColor={selectedStatName === "dex" ? "cyan" : "blue"} > DEX </Button>
+        <Button name="con" backgroundColor={selectedStatName === "con" ? "cyan" : "blue"} > CON </Button>
+        <Button name="wis" backgroundColor={selectedStatName === "wis" ? "cyan" : "blue"} > WIS </Button>
+        <Button name="int" backgroundColor={selectedStatName === "int" ? "cyan" : "blue"} > INT </Button>
+        <Button name="chr" backgroundColor={selectedStatName === "chr" ? "cyan" : "blue"} > CHR </Button>
       </div>
     );
   }
