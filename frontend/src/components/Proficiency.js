@@ -59,10 +59,9 @@ class Proficiency extends React.Component {
   render() {
     return (
       <div onClick={this.onProfClick}>
-        <Button name="proficient" backgroundColor={this.props.selectedProf.name === "proficient" ? "blue" : "cyan"} > Proficient </Button>
-        <Button name="expertise" backgroundColor={this.props.selectedProf.name === "expertise" ? "blue" : "cyan"} > Expertise </Button>
-        <Button name="jackOfAllTrades" backgroundColor={this.props.selectedProf.name === "jackOfAllTrades" ? "blue" : "cyan"} > Jack </Button>
-        of All Trades
+        <Button name="proficient" backgroundColor={this.props.selectedProf.name === "proficient" ? "blue" : "cyan"} >Proficient</Button>
+        <Button name="expertise" backgroundColor={this.props.selectedProf.name === "expertise" ? "blue" : "cyan"} >Expertise</Button>
+        <Button name="jackOfAllTrades" backgroundColor={this.props.selectedProf.name === "jackOfAllTrades" ? "blue" : "cyan"} >Jack of All Trades</Button>
       </div>
     );
   }
