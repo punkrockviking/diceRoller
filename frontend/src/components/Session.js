@@ -35,7 +35,10 @@ class Session extends React.Component {
       selectedDice: 20,
       selectedDiceQty: 1,
       rawRoll: null,
-      statMod: null,
+      statMod: {
+        stat: '',
+        num: null,
+      },
       advantage: "",
       proficient: null,
       featMod: "",
@@ -55,11 +58,12 @@ class Session extends React.Component {
     });
   };
 
-  onChooseStat = (stat) => {
+  onChooseStat = (statName) => {
     this.setState({
-      statMod: Math.floor((this.state.selectedCharacter[stat] - 10) / 2),
-    });
-    console.log("Your stat mod is ", this.state.statMod);
+      statMod: {
+        stat: statName,
+        num: Math.floor((this.state.selectedCharacter[statName] - 10) / 2),
+      }}, () => console.log("Your stat mod is ", this.state.statMod.num));
   };
 
   calcTotalRoll = () => {
@@ -71,12 +75,12 @@ class Session extends React.Component {
     if (this.state.rawRoll) {
       let totalRoll = this.state.rawRoll;
       if (this.state.selectedDice === 20) {
-        totalRoll = (totalRoll + this.state.statMod + this.state.proficient)
+        totalRoll = (totalRoll + this.state.statMod.num + this.state.proficient)
         return totalRoll
       } if (this.state.selectedDice === 100) {
         return totalRoll
       } else {
-        totalRoll += (this.state.statMod)
+        totalRoll += (this.state.statMod.num)
         return totalRoll
       }
     }

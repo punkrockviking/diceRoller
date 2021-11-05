@@ -1,6 +1,6 @@
 import React from "react";
 import Profiles from "./Profiles";
-// import { Button } from './Button.style'
+// import { Button } from './Button'
 import Session from "./Session";
 
 class App extends React.Component {

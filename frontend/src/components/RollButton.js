@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "./Button.style"
+import Button from "./Button"
 
 class RollButton extends React.Component {
   onRoll = (event) => {

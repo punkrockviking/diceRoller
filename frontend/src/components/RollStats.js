@@ -1,29 +1,22 @@
 import React from "react";
+import Button from "./Button"
 
 class RollStats extends React.Component {
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     selectedStat: "",
-  //   };
-  // }
 
   onStatClick = (event) => {
-    console.log(event.target.value);
-    this.props.onChooseStat(event.target.value);
-    // this.setState({ selectedStat: event.target.value });
-    // console.log(this.state.selectedStat);
+    console.log(event.target.name);
+    this.props.onChooseStat(event.target.name);
   };
 
   render() {
     return (
       <div onClick={this.onStatClick}>
-        <input type="radio" value="str" name="stat" /> STR
-        <input type="radio" value="dex" name="stat" /> DEX
-        <input type="radio" value="con" name="stat" /> CON
-        <input type="radio" value="wis" name="stat" /> WIS
-        <input type="radio" value="int" name="stat" /> INT
-        <input type="radio" value="chr" name="stat" /> CHR
+        <Button name="str" backgroundColor="cyan" hoverColor="lightBlue" focusColor="blue" > STR </Button>
+        <Button name="dex" backgroundColor="cyan" hoverColor="lightBlue" focusColor="blue" > DEX </Button>
+        <Button name="con" backgroundColor="cyan" hoverColor="lightBlue" focusColor="blue" > CON </Button>
+        <Button name="wis" backgroundColor="cyan" hoverColor="lightBlue" focusColor="blue" > WIS </Button>
+        <Button name="int" backgroundColor="cyan" hoverColor="lightBlue" focusColor="blue" > INT </Button>
+        <Button name="chr" backgroundColor="cyan" hoverColor="lightBlue" focusColor="blue" > CHR </Button>
       </div>
     );
   }
