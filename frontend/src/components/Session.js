@@ -149,7 +149,19 @@ class Session extends React.Component {
         name: '',
         num: null,
       }
-    }, () => console.log(this.state.proficient) )
+    }, () => console.log(this.state.proficient))
+  }
+
+  updateAdvantage = (val) => {
+    this.setState({
+      advantage: val,
+    }, console.log(this.state.advantage))
+  }
+
+  resetAdvantage = () => {
+    this.setState({
+      advantage: '',
+    }, console.log(this.state.advantage))
   }
 
   updateRollLog = (entries) => {
@@ -237,7 +249,7 @@ class Session extends React.Component {
                 reset={this.resetProfMod}
                 selectedProf={this.state.proficient}
               />
-              <Advantage />
+              <Advantage selectedAdv={this.state.advantage} update={this.updateAdvantage} reset={this.resetAdvantage} />
             </div>
           ) : (
             <CharacterList
