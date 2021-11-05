@@ -59,12 +59,25 @@ class Session extends React.Component {
   };
 
   onChooseStat = (statName) => {
+    if (this.state.statMod.stat === statName) {
+      this.resetStatMod()
+    } else {
     this.setState({
       statMod: {
         stat: statName,
         num: Math.floor((this.state.selectedCharacter[statName] - 10) / 2),
       }}, () => console.log("Your stat mod is ", this.state.statMod.num));
+    }
   };
+
+  resetStatMod = () => {
+    this.setState({
+      statMod: {
+        stat: '',
+        num: null,
+      }
+    }, () => console.log(this.state.statMod) )
+  }
 
   calcTotalRoll = () => {
     // need to conditionally config rolls
@@ -201,7 +214,7 @@ class Session extends React.Component {
                 onDiceClick={this.onDiceClick}
               />
               CHOOSE YOUR MODIFIERS
-              <RollStats onChooseStat={this.onChooseStat} />
+              <RollStats onChooseStat={this.onChooseStat} selectedStatName={this.state.statMod.stat} resetStatMod={this.resetStatMod} />
               <Proficiency
                 level={this.state.selectedCharacter.level}
                 update={this.updateProficient}

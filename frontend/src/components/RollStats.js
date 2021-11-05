@@ -4,8 +4,15 @@ import Button from "./Button"
 class RollStats extends React.Component {
 
   onStatClick = (event) => {
+    const { selectedStatName, resetStatMod, onChooseStat } = this.props
     console.log(event.target.name);
-    this.props.onChooseStat(event.target.name);
+    if (selectedStatName === event.target.name) {
+      console.log('GONNA BLUR HOMIE!!!!!!!!!!!!!', selectedStatName, event.target.name)
+      event.target.blur()
+      resetStatMod()
+    } else {
+      onChooseStat(event.target.name);
+    }
   };
 
   render() {
