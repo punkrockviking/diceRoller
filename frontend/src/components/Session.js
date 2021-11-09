@@ -111,9 +111,12 @@ class Session extends React.Component {
     // proficiency only helps d20 rolls
     // stat may or may not help d4-d12 rolls
     // etc
-    if (this.state.rawRoll) {
+    if (this.state.rawRoll.length >= 1) {
       // add up the sum of all indexes in rawRoll and set totalRoll equal to sum
-      let totalRoll = this.state.rawRoll;
+      let totalRoll = this.state.rawRoll.reduce(add, 0)
+      function add(accumulator, a) {
+        return accumulator + a
+      }
       if (this.state.selectedDice === 20) {
         totalRoll = (totalRoll + this.state.statMod.num + this.state.proficient.num)
         return totalRoll
