@@ -5,9 +5,9 @@ class RollButton extends React.Component {
   onRoll = (event) => {
     event.preventDefault();
     const rollDice = () => {
-      let totalRoll = 0;
+      let totalRoll = [];
       for (let i = 1; i <= this.props.qty; i++) {
-        totalRoll += Math.ceil(Math.random() * this.props.sides);
+        totalRoll.push(Math.ceil(Math.random() * this.props.sides));
       }
       console.log(
         `You rolled ${this.props.qty} ${this.props.name} for a total of:`,

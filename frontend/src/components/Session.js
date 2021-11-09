@@ -12,6 +12,7 @@ import Proficiency from "./Proficiency";
 import Advantage from "./Advantage";
 import RollLog from "./RollLog";
 import RollButton from "./RollButton";
+import ResetButton from "./ResetButton"
 
 class Session extends React.Component {
   constructor(props) {
@@ -34,7 +35,7 @@ class Session extends React.Component {
       },
       selectedDice: 20,
       selectedDiceQty: 1,
-      rawRoll: null,
+      rawRoll: [],
       statMod: {
         stat: '',
         num: null,
@@ -82,6 +83,28 @@ class Session extends React.Component {
     }, () => console.log(this.state.statMod) )
   }
 
+  resetDiceButtons = () => {
+    this.setState({
+      selectedDice: 20,
+      selectedDiceQty: 1,
+    })
+  }
+
+  resetModButtons = () => {
+    this.setState({
+      statMod: {
+        stat: '',
+        num: null,
+      },
+      advantage: "",
+      proficient: {
+        name: "",
+        num: null,
+      },
+      featMod: "",
+    })
+  }
+
   calcTotalRoll = () => {
     // need to conditionally config rolls
     // nothing helps d100 roll
@@ -89,6 +112,7 @@ class Session extends React.Component {
     // stat may or may not help d4-d12 rolls
     // etc
     if (this.state.rawRoll) {
+      // add up the sum of all indexes in rawRoll and set totalRoll equal to sum
       let totalRoll = this.state.rawRoll;
       if (this.state.selectedDice === 20) {
         totalRoll = (totalRoll + this.state.statMod.num + this.state.proficient.num)
@@ -241,6 +265,8 @@ class Session extends React.Component {
                 total={this.calcTotalRoll()}
                 onDiceClick={this.onDiceClick}
               />
+              <ResetButton text="Reset Dice" reset={this.resetDiceButtons} />
+              <ResetButton text="Reset Mods" reset={this.resetModButtons} />
               CHOOSE YOUR MODIFIERS
               <RollStats onChooseStat={this.onChooseStat} selectedStatName={this.state.statMod.stat} resetStatMod={this.resetStatMod} />
               <Proficiency

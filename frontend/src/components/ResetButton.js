@@ -1,12 +1,16 @@
 import React from 'react'
+import Button from "./Button"
 
 class ResetButton extends React.Component {
 
-    // 2 reset buttons, 1 for dice, 1 for modifiers
+    onButtonClick = (event) => {
+        event.preventDefault()
+        this.props.reset()
+    }
 
     render() {
         return (
-            <div>Reset Button</div>
+            <Button onClick={this.onButtonClick} backgroundColor='red' hoverColor='lightRed' >{this.props.text}</Button>
         )
     }
 }
