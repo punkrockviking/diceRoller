@@ -10,7 +10,7 @@ class RollButton extends React.Component {
         totalRoll.push(Math.ceil(Math.random() * this.props.sides));
       }
       console.log(
-        `You rolled ${this.props.qty} ${this.props.name} for a total of:`,
+        `You rolled ${this.props.qty} ${this.props.name}! Your rolls are:`,
         totalRoll
       );
       return this.props.updateRawRoll(totalRoll);

@@ -107,25 +107,23 @@ class Session extends React.Component {
 
   calcTotalRoll = () => {
     // need to conditionally config rolls
-    // nothing helps d100 roll
-    // proficiency only helps d20 rolls
-    // stat may or may not help d4-d12 rolls
-    // etc
+    let totalRoll = 0
     if (this.state.rawRoll.length >= 1) {
       // add up the sum of all indexes in rawRoll and set totalRoll equal to sum
-      let totalRoll = this.state.rawRoll.reduce(add, 0)
+      totalRoll = this.state.rawRoll.reduce(add, 0)
       function add(accumulator, a) {
         return accumulator + a
       }
       if (this.state.selectedDice === 20) {
+        // proficiency only helps d20 rolls
         totalRoll = (totalRoll + this.state.statMod.num + this.state.proficient.num)
-        return totalRoll
       } if (this.state.selectedDice === 100) {
-        return totalRoll
+        // no mods add to d100 roll
       } else {
+        // stats may or may not help d4-d12 rolls
         totalRoll += (this.state.statMod.num)
-        return totalRoll
       }
+      return totalRoll
     }
   };
 
