@@ -123,7 +123,7 @@ class Session extends React.Component {
         // stats may or may not help d4-d12 rolls
         totalRoll += (this.state.statMod.num)
       }
-      // this.updateRollLog(totalRoll)
+      this.createRollLogEntry(totalRoll)
       return totalRoll
     }
   };
@@ -203,6 +203,15 @@ class Session extends React.Component {
     this.setState({rollLog: updatedLog})
   }
 
+  createRollLogEntry = (roll) => {
+    const newEntry = {
+      timestamp: Date.now(), 
+      text: `Your roll was ${roll}`,
+      _character: this.state.selectedCharacter._id,
+    }
+    console.log(newEntry)
+  }
+  
   render() {
     return (
       <div>
