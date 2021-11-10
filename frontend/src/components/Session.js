@@ -189,11 +189,9 @@ class Session extends React.Component {
     }, console.log(this.state.advantage))
   }
 
-  updateRollLog = (entries) => {
-    console.log(entries)
-    this.setState({
-      rollLog: entries
-    })
+  updateRollLog = ({ rollLog }) => {
+    console.log('changing roll log state', { rollLog })
+    this.setState({ rollLog })
   }
 
   render() {
@@ -208,7 +206,7 @@ class Session extends React.Component {
               />
               <RollLog
                 id={this.state.selectedCharacter._id}
-                updateRollLog={this.updateRollLog}
+                update={this.updateRollLog}
                 log={this.state.rollLog}
                 lastRoll={this.state.rawRoll}
               />

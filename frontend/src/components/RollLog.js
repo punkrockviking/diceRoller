@@ -10,23 +10,19 @@ class RollLog extends React.Component {
 
   //FIGURE OUT A WAY TO FIND THE ARRAY WITH THE LOG ENTRIES THEN MAP THROUGH THE ENTRIES!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-  // addToLog = () => {
-  //   let newLog = log
-  //   newLog.push(lastRoll);
-  //   return newLog;
-  // };
+  addToLog = () => {
+    let newLog = this.props.log
+    newLog.push(this.props.lastRoll);
+    console.log(newLog)
+    return newLog;
+  };
 
   componentDidMount = () => {
     fetch(`/rollLog?characterId=${this.props.id}`)
       .then((response) => response.json())
-      .then(({rollLog}) => this.setState({ rollLog }));
+      .then(({rollLog}) => this.props.update({ rollLog }));
   };
-  // componentDidMount = () => {
-  //   // fetch the roll log from backend
-  //   this.setState({
-  //     log: this.props.lastRoll,
-  //   });
-  // };
+
 
   // componentDidUpdate = () => {
   //   // post new roll log to backend
@@ -41,8 +37,7 @@ class RollLog extends React.Component {
     return (
       <>
         <div>RollLog:</div>
-        {console.log(this.state)}
-        {this.state.rollLog.map((entry) => (
+        {this.props.log.map((entry) => (
           <div key={entry._id}>{entry.timestamp}: {entry.text}</div>
         ))}
       </>
