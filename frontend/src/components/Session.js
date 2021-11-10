@@ -205,11 +205,22 @@ class Session extends React.Component {
 
   createRollLogEntry = (roll) => {
     const newEntry = {
-      timestamp: Date.now(), 
+      timestamp: Date(), 
       text: `Your roll was ${roll}`,
       _character: this.state.selectedCharacter._id,
     }
     console.log(newEntry)
+  }
+
+  // NEED TO FIGURE OUT WHERE AND WHEN TO USE THIS
+  submitRollLogEntry = (entry) => {
+    fetch(`/session`, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(entry),
+    });
   }
   
   render() {
@@ -226,6 +237,7 @@ class Session extends React.Component {
                 id={this.state.selectedCharacter._id}
                 fetch={this.fetchRollLog}
                 update={this.updateRollLog}
+                createEntry={this.createRollLogEntry}
                 log={this.state.rollLog}
                 lastRoll={this.state.rawRoll}
               />

@@ -24,13 +24,10 @@ class RollLog extends React.Component {
   };
 
 
-  // componentDidUpdate = () => {
-  //   // post new roll log to backend
-  //   let arr = this.props.log;
-  //   console.log(arr);
-  //   arr = arr.push(this.props.lastRoll)
-  //   console.log(arr)
-  // };
+  componentDidUpdate = () => {
+    // post new roll log to backend
+    
+  };
 
   render() {
     return (

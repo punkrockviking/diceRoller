@@ -68,3 +68,12 @@ app.post("/session", async (req, res) => {
   }
   res.status(201).send("Updated character stats");
 });
+
+app.post("/rollLog", async (req, res) => {
+  try {
+    await RollLog.create(newEntry)
+  } catch (err) {
+    return res.status(500).send("Failed to add RollLog entry")
+  }
+  res.status(201).send("Added new log entry")
+});
