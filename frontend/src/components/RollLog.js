@@ -10,27 +10,26 @@ class RollLog extends React.Component {
 
   //FIGURE OUT A WAY TO FIND THE ARRAY WITH THE LOG ENTRIES THEN MAP THROUGH THE ENTRIES!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-  addToLog = () => {
-    let newLog = this.props.log
-    newLog.push(this.props.lastRoll);
-    console.log(newLog)
-    return newLog;
-  };
+  // addToLog = () => {
+  //   let newLog = this.props.log
+  //   newLog.push(this.props.lastRoll);
+  //   console.log(newLog)
+  //   return newLog;
+  // };
 
   componentDidMount = () => {
     fetch(`/rollLog?characterId=${this.props.id}`)
       .then((response) => response.json())
-      .then(({rollLog}) => this.props.update({ rollLog }));
+      .then(({rollLog}) => this.props.fetch({ rollLog }));
   };
 
 
   // componentDidUpdate = () => {
   //   // post new roll log to backend
-  //   const arr = this.state.log;
+  //   let arr = this.props.log;
   //   console.log(arr);
-  //   this.setState({
-  //     log: arr.push(this.props.lastRoll),
-  //   });
+  //   arr = arr.push(this.props.lastRoll)
+  //   console.log(arr)
   // };
 
   render() {

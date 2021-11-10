@@ -123,6 +123,7 @@ class Session extends React.Component {
         // stats may or may not help d4-d12 rolls
         totalRoll += (this.state.statMod.num)
       }
+      // this.updateRollLog(totalRoll)
       return totalRoll
     }
   };
@@ -189,9 +190,17 @@ class Session extends React.Component {
     }, console.log(this.state.advantage))
   }
 
-  updateRollLog = ({ rollLog }) => {
-    console.log('changing roll log state', { rollLog })
+  fetchRollLog = ({ rollLog }) => {
+    console.log('initializing roll log state', { rollLog })
     this.setState({ rollLog })
+  }
+
+  updateRollLog = (entry) => {
+    const updatedLog = this.state.rollLog
+    console.log('old log', this.state.rollLog)
+    updatedLog.push(entry)
+    console.log('new log', updatedLog)
+    this.setState({rollLog: updatedLog})
   }
 
   render() {
@@ -206,6 +215,7 @@ class Session extends React.Component {
               />
               <RollLog
                 id={this.state.selectedCharacter._id}
+                fetch={this.fetchRollLog}
                 update={this.updateRollLog}
                 log={this.state.rollLog}
                 lastRoll={this.state.rawRoll}
@@ -259,6 +269,7 @@ class Session extends React.Component {
                 name={`D${this.state.selectedDice}`}
                 qty={this.state.selectedDiceQty}
                 updateRawRoll={this.updateRawRoll}
+                updateRollLog={this.updateRollLog}
               />
               <Total
                 total={this.calcTotalRoll()}
