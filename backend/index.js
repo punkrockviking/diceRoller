@@ -71,7 +71,7 @@ app.post("/session", async (req, res) => {
 
 app.post("/rollLog", async (req, res) => {
   try {
-    await RollLog.create(newEntry)
+    await RollLog.create(req.body)
   } catch (err) {
     return res.status(500).send("Failed to add RollLog entry")
   }

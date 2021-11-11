@@ -36,6 +36,7 @@ class Session extends React.Component {
       selectedDice: 20,
       selectedDiceQty: 1,
       rawRoll: [],
+      totalRoll: null,
       statMod: {
         stat: '',
         num: null,
@@ -105,6 +106,7 @@ class Session extends React.Component {
     })
   }
 
+        // NEED TO TROUBLESHOOT. STATMOD IS BEING ADDED TWICE TO ALL ROLLS
   calcTotalRoll = () => {
     // need to conditionally config rolls
     let totalRoll = 0
@@ -123,7 +125,7 @@ class Session extends React.Component {
         // stats may or may not help d4-d12 rolls
         totalRoll += (this.state.statMod.num)
       }
-      this.createRollLogEntry(totalRoll)
+      // this.setState{totalRoll: totalRoll}
       return totalRoll
     }
   };
@@ -198,7 +200,7 @@ class Session extends React.Component {
   updateRollLog = (entry) => {
     const updatedLog = this.state.rollLog
     console.log('old log', this.state.rollLog)
-    updatedLog.push(entry)
+    updatedLog.unshift(entry)
     console.log('new log', updatedLog)
     this.setState({rollLog: updatedLog})
   }
@@ -209,19 +211,20 @@ class Session extends React.Component {
       text: `Your roll was ${roll}`,
       _character: this.state.selectedCharacter._id,
     }
-    console.log(newEntry)
+    // console.log(newEntry)
+    return newEntry
   }
 
   // NEED TO FIGURE OUT WHERE AND WHEN TO USE THIS
-  submitRollLogEntry = (entry) => {
-    fetch(`/session`, {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(entry),
-    });
-  }
+  // postRollLogEntry = (entry) => {
+  //   fetch(`/session`, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-type": "application/json",
+  //     },
+  //     body: JSON.stringify(entry),
+  //   });
+  // }
   
   render() {
     return (
@@ -294,7 +297,7 @@ class Session extends React.Component {
               />
               <Total
                 total={this.calcTotalRoll()}
-                onDiceClick={this.onDiceClick}
+                // onDiceClick={this.onDiceClick}
               />
               <ResetButton text="Reset Dice" reset={this.resetDiceButtons} />
               <ResetButton text="Reset Mods" reset={this.resetModButtons} />
