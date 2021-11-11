@@ -28,6 +28,9 @@ class RollLog extends React.Component {
   }
 
   componentDidUpdate = () => {
+    // what if instead of updating state and then posting data to backend, we post data to backend, fetch again, and THEN update state
+    
+    
     // // endless loop
     // this.props.update(this.props.createEntry(this.props.lastRoll))
     
@@ -46,7 +49,7 @@ class RollLog extends React.Component {
       <>
         <div onClick={this.onClick} >RollLog:</div>
         {this.props.log.map((entry) => (
-          <div key={entry._id}>{entry.timestamp}: {entry.text}</div>
+          <div key={entry.timestamp}>{entry.timestamp}: {entry.text}</div>
         ))}
       </>
     );

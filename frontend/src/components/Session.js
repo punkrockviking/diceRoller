@@ -109,28 +109,39 @@ class Session extends React.Component {
         // NEED TO TROUBLESHOOT. STATMOD IS BEING ADDED TWICE TO ALL ROLLS
   calcTotalRoll = () => {
     // need to conditionally config rolls
+    const { rawRoll, selectedDice, statMod, proficient } = this.state
     let totalRoll = 0
-    if (this.state.rawRoll.length >= 1) {
+    if (rawRoll.length >= 1) {
       // add up the sum of all indexes in rawRoll and set totalRoll equal to sum
-      totalRoll = this.state.rawRoll.reduce(add, 0)
+      totalRoll = rawRoll.reduce(add, 0)
       function add(accumulator, a) {
         return accumulator + a
       }
-      if (this.state.selectedDice === 20) {
+      if (selectedDice === 20) {
         // roll with adv or disadv
         
         // proficiency only helps d20 rolls
-        totalRoll = (totalRoll + this.state.statMod.num + this.state.proficient.num)
+        totalRoll = (totalRoll + statMod.num + proficient.num)
+        if (this.state.greatWeaponMaster) {
+          // subtract 5 from roll
+          // create roll log entry
+          // return
+        }
         this.createRollLogEntry(totalRoll)
         return totalRoll
-      } if (this.state.selectedDice === 100) {
+      } if (selectedDice === 100) {
         // no mods add to d100 roll
-        totalRoll = this.state.rawRoll
+        totalRoll = rawRoll
         this.createRollLogEntry(totalRoll)
         return totalRoll
       } else {
         // stats may or may not help d4-d12 rolls
-        totalRoll += (this.state.statMod.num)
+        totalRoll += (statMod.num)
+        if (this.state.greatWeaponMaster) {
+          // add 10 to roll
+          // create roll log entry
+          // return
+        }
         this.createRollLogEntry(totalRoll)
         return totalRoll
       }
@@ -218,7 +229,8 @@ class Session extends React.Component {
       text: `Your roll was ${roll}`,
       _character: this.state.selectedCharacter._id,
     }
-    // console.log(newEntry)
+    // endless loop
+    // this.updateRollLog(newEntry)
     return newEntry
   }
 
