@@ -117,16 +117,23 @@ class Session extends React.Component {
         return accumulator + a
       }
       if (this.state.selectedDice === 20) {
+        // roll with adv or disadv
+        
         // proficiency only helps d20 rolls
         totalRoll = (totalRoll + this.state.statMod.num + this.state.proficient.num)
+        this.createRollLogEntry(totalRoll)
+        return totalRoll
       } if (this.state.selectedDice === 100) {
         // no mods add to d100 roll
+        totalRoll = this.state.rawRoll
+        this.createRollLogEntry(totalRoll)
+        return totalRoll
       } else {
         // stats may or may not help d4-d12 rolls
         totalRoll += (this.state.statMod.num)
+        this.createRollLogEntry(totalRoll)
+        return totalRoll
       }
-      // this.setState{totalRoll: totalRoll}
-      return totalRoll
     }
   };
 
@@ -199,7 +206,7 @@ class Session extends React.Component {
 
   updateRollLog = (entry) => {
     const updatedLog = this.state.rollLog
-    console.log('old log', this.state.rollLog)
+    console.log('old log', updatedLog)
     updatedLog.unshift(entry)
     console.log('new log', updatedLog)
     this.setState({rollLog: updatedLog})

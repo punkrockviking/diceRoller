@@ -26,8 +26,11 @@ class RollLog extends React.Component {
   onClick = () => {
     this.props.update(this.props.createEntry(this.props.lastRoll))
   }
-  
-  // componentDidUpdate = () => {
+
+  componentDidUpdate = () => {
+    // // endless loop
+    // this.props.update(this.props.createEntry(this.props.lastRoll))
+    
   //   // post new roll log to backend
   //   fetch(`/session`, {
   //     method: "POST",
@@ -36,7 +39,7 @@ class RollLog extends React.Component {
   //     },
   //     body: JSON.stringify(this.props.lastRoll),
   //   });
-  // };
+  };
 
   render() {
     return (
