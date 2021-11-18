@@ -16,7 +16,7 @@ class RollLog extends React.Component {
   //   console.log(newLog)
   //   return newLog;
   // };
-
+  
   componentDidMount = () => {
     fetch(`/rollLog?characterId=${this.props.id}`)
       .then((response) => response.json())
@@ -29,8 +29,16 @@ class RollLog extends React.Component {
 
   componentDidUpdate = () => {
     // what if instead of updating state and then posting data to backend, we post data to backend, fetch again, and THEN update state
+    const newLogEntry = this.props.createEntry(this.props.lastRoll)
+    fetch(`/rollLog?characterId=${this.props.id}`, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(newLogEntry),
+    })
     
-    
+
     // // endless loop
     // this.props.update(this.props.createEntry(this.props.lastRoll))
     
