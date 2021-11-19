@@ -9,7 +9,7 @@ class Dice extends React.Component {
   }
 
   onQtyChange = (event) => {
-    this.setState({ qtyOfDice: event.target.valueAsNumber });
+    this.props.updateDiceQty(event.target.valueAsNumber, this.props.name);
     this.props.updateSelectedDiceQty(event.target.valueAsNumber);
     this.props.updateSelectedDice(Number(this.props.sides));
   };
@@ -43,7 +43,7 @@ class Dice extends React.Component {
             <input
               type="number"
               min="1"
-              value={this.state.qtyOfDice}
+              value={this.props.qty}
               onChange={this.onQtyChange}
             >
               {this.state.numberOfDice}

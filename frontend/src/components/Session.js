@@ -48,6 +48,43 @@ class Session extends React.Component {
       },
       featMod: "",
       rollLog: [],
+      dice:   [
+        {
+          name: 'D4',
+          sides: 4,
+          qty: 1
+        },
+        {
+          name: 'D6',
+          sides: 6,
+          qty: 1
+        },
+        {
+          name: 'D8',
+          sides: 8,
+          qty: 1
+        },
+        {
+          name: 'D10',
+          sides: 10,
+          qty: 1
+        },
+        {
+          name: 'D12',
+          sides: 12,
+          qty: 1
+        },
+        {
+          name: 'D20',
+          sides: 20,
+          qty: 1
+        },
+        {
+          name: 'D100',
+          sides: 100,
+          qty: 1
+        }
+      ]
     };
   }
 
@@ -184,6 +221,23 @@ class Session extends React.Component {
     this.setState({ selectedDiceQty: num });
   };
 
+  updateDiceQty = (num, name) => {
+    const newDice = this.state.dice
+    const updatedDiceIndex = newDice.findIndex(die => die.name === name)
+    newDice[updatedDiceIndex].qty = num 
+    this.setState({ dice: newDice })
+  }
+
+  resetDiceQty = () => {
+    const resetDice = this.state.dice.map((die) => {
+      return {
+        ...die,
+        qty: 1
+      }
+    })
+    this.setState({dice: resetDice})
+  }
+
   updateProficient = (profName, profNum) => {
     this.setState({ proficient: {
       name: profName,
@@ -254,47 +308,11 @@ class Session extends React.Component {
   }  
 
   renderDice = () => {
-    const diceObject = [
-      {
-        name: 'D4',
-        sides: 4,
-        qty: 1
-      },
-      {
-        name: 'D6',
-        sides: 6,
-        qty: 1
-      },
-      {
-        name: 'D8',
-        sides: 8,
-        qty: 1
-      },
-      {
-        name: 'D10',
-        sides: 10,
-        qty: 1
-      },
-      {
-        name: 'D12',
-        sides: 12,
-        qty: 1
-      },
-      {
-        name: 'D20',
-        sides: 20,
-        qty: 1
-      },
-      {
-        name: 'D100',
-        sides: 100,
-        qty: 1
-      }
-    ]
-    const displayDice = diceObject.map(die => {
+    const displayDice = this.state.dice.map(die => {
       return(<Dice 
         updateSelectedDice={this.updateSelectedDice}
         updateSelectedDiceQty={this.updateSelectedDiceQty}
+        updateDiceQty={this.updateDiceQty}
         name={die.name}
         sides={die.sides}
         qty={die.qty}
@@ -336,7 +354,7 @@ class Session extends React.Component {
                 total={this.calcTotalRoll}
                 // onDiceClick={this.onDiceClick}
               />
-              <ResetButton text="Reset Dice" reset={this.resetDiceButtons} resetQty={this.displayDice} />
+              <ResetButton text="Reset Dice" reset={this.resetDiceButtons} resetQty={this.resetDiceQty} />
               <ResetButton text="Reset Mods" reset={this.resetModButtons} />
               CHOOSE YOUR MODIFIERS
               <RollStats onChooseStat={this.onChooseStat} selectedStatName={this.state.statMod.stat} resetStatMod={this.resetStatMod} />
