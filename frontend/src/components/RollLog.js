@@ -30,6 +30,7 @@ class RollLog extends React.Component {
   componentDidUpdate = () => {
     // what if instead of updating state and then posting data to backend, we post data to backend, fetch again, and THEN update state
     const newLogEntry = this.props.createEntry(this.props.lastRoll)
+
     fetch(`/rollLog?characterId=${this.props.id}`, {
       method: "POST",
       headers: {
@@ -37,6 +38,8 @@ class RollLog extends React.Component {
       },
       body: JSON.stringify(newLogEntry),
     })
+
+
     
 
     // // endless loop

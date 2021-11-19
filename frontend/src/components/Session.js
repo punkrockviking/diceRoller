@@ -234,16 +234,16 @@ class Session extends React.Component {
     return newEntry
   }
 
-  // NEED TO FIGURE OUT WHERE AND WHEN TO USE THIS
-  // postRollLogEntry = (entry) => {
-  //   fetch(`/session`, {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-type": "application/json",
-  //     },
-  //     body: JSON.stringify(entry),
-  //   });
-  // }
+  postLogEntry = (entry) => {
+    fetch(`/rollLog?characterId=${this.state.selectedCharacter._id}`, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(entry),
+    })
+  }  
+
   
   render() {
     return (
