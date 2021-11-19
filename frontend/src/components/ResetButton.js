@@ -5,7 +5,8 @@ class ResetButton extends React.Component {
 
     onButtonClick = (event) => {
         event.preventDefault()
-        this.props.reset()
+        this.props.reset && this.props.reset()
+        this.props.resetQty && this.props.resetQty()
     }
 
     render() {

@@ -23,21 +23,21 @@ class RollLog extends React.Component {
       .then(({rollLog}) => this.props.fetch({ rollLog }));
   };
 
-  onClick = () => {
-    this.props.update(this.props.createEntry(this.props.lastRoll))
-  }
+  // onClick = () => {
+  //   this.props.update(this.props.createEntry(this.props.lastRoll))
+  // }
 
-  componentDidUpdate = () => {
-    // what if instead of updating state and then posting data to backend, we post data to backend, fetch again, and THEN update state
-    const newLogEntry = this.props.createEntry(this.props.lastRoll)
+  // componentDidUpdate = () => {
+  //   // what if instead of updating state and then posting data to backend, we post data to backend, fetch again, and THEN update state
+  //   const newLogEntry = this.props.createEntry(this.props.lastRoll)
 
-    fetch(`/rollLog?characterId=${this.props.id}`, {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(newLogEntry),
-    })
+  //   fetch(`/rollLog?characterId=${this.props.id}`, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-type": "application/json",
+  //     },
+  //     body: JSON.stringify(newLogEntry),
+  //   })
 
 
     
@@ -53,14 +53,14 @@ class RollLog extends React.Component {
   //     },
   //     body: JSON.stringify(this.props.lastRoll),
   //   });
-  };
+  // };
 
   render() {
     return (
       <>
-        <div onClick={this.onClick} >RollLog:</div>
+        <div>RollLog:</div>
         {this.props.log.map((entry) => (
-          <div key={entry.timestamp}>{entry.timestamp}: {entry.text}</div>
+          <div key={Math.random()}>{entry.timestamp}: {entry.text}</div>
         ))}
       </>
     );

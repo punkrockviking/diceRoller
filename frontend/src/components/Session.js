@@ -89,6 +89,9 @@ class Session extends React.Component {
       selectedDice: 20,
       selectedDiceQty: 1,
     })
+    const resetDice = () => {
+
+    }
   }
 
   resetModButtons = () => {
@@ -105,6 +108,10 @@ class Session extends React.Component {
       featMod: "",
     })
   }
+
+  // create object that houses all the modifiers and roll values
+  // total component would take sum of all the object values
+  // createRollLogEntry would construct the roll log based on that object
 
         // NEED TO TROUBLESHOOT. STATMOD IS BEING ADDED TWICE TO ALL ROLLS
   calcTotalRoll = () => {
@@ -127,12 +134,10 @@ class Session extends React.Component {
           // create roll log entry
           // return
         }
-        this.createRollLogEntry(totalRoll)
         return totalRoll
       } if (selectedDice === 100) {
         // no mods add to d100 roll
         totalRoll = rawRoll
-        this.createRollLogEntry(totalRoll)
         return totalRoll
       } else {
         // stats may or may not help d4-d12 rolls
@@ -142,7 +147,6 @@ class Session extends React.Component {
           // create roll log entry
           // return
         }
-        this.createRollLogEntry(totalRoll)
         return totalRoll
       }
     }
@@ -215,12 +219,17 @@ class Session extends React.Component {
     this.setState({ rollLog })
   }
 
-  updateRollLog = (entry) => {
+  updateRollLog = (roll) => {
+    const newEntry = this.createRollLogEntry(roll)
     const updatedLog = this.state.rollLog
     console.log('old log', updatedLog)
-    updatedLog.unshift(entry)
+    if (updatedLog.length >= 10) {
+      updatedLog.pop()
+    }
+    updatedLog.unshift(newEntry)
     console.log('new log', updatedLog)
     this.setState({rollLog: updatedLog})
+    this.postLogEntry(newEntry)
   }
 
   createRollLogEntry = (roll) => {
@@ -244,8 +253,58 @@ class Session extends React.Component {
     })
   }  
 
+  renderDice = () => {
+    const diceObject = [
+      {
+        name: 'D4',
+        sides: 4,
+        qty: 1
+      },
+      {
+        name: 'D6',
+        sides: 6,
+        qty: 1
+      },
+      {
+        name: 'D8',
+        sides: 8,
+        qty: 1
+      },
+      {
+        name: 'D10',
+        sides: 10,
+        qty: 1
+      },
+      {
+        name: 'D12',
+        sides: 12,
+        qty: 1
+      },
+      {
+        name: 'D20',
+        sides: 20,
+        qty: 1
+      },
+      {
+        name: 'D100',
+        sides: 100,
+        qty: 1
+      }
+    ]
+    const displayDice = diceObject.map(die => {
+      return(<Dice 
+        updateSelectedDice={this.updateSelectedDice}
+        updateSelectedDiceQty={this.updateSelectedDiceQty}
+        name={die.name}
+        sides={die.sides}
+        qty={die.qty}
+      />)
+    } )
+    return displayDice
+  }
   
   render() {
+    
     return (
       <div>
         <div>
@@ -264,48 +323,7 @@ class Session extends React.Component {
                 lastRoll={this.state.rawRoll}
               />
               <div>
-                <Dice
-                  updateSelectedDice={this.updateSelectedDice}
-                  updateSelectedDiceQty={this.updateSelectedDiceQty}
-                  name="D4"
-                  sides="4"
-                />
-                <Dice
-                  updateSelectedDice={this.updateSelectedDice}
-                  updateSelectedDiceQty={this.updateSelectedDiceQty}
-                  name="D6"
-                  sides="6"
-                />
-                <Dice
-                  updateSelectedDice={this.updateSelectedDice}
-                  updateSelectedDiceQty={this.updateSelectedDiceQty}
-                  name="D8"
-                  sides="8"
-                />
-                <Dice
-                  updateSelectedDice={this.updateSelectedDice}
-                  updateSelectedDiceQty={this.updateSelectedDiceQty}
-                  name="D10"
-                  sides="10"
-                />
-                <Dice
-                  updateSelectedDice={this.updateSelectedDice}
-                  updateSelectedDiceQty={this.updateSelectedDiceQty}
-                  name="D12"
-                  sides="12"
-                />
-                <Dice
-                  updateSelectedDice={this.updateSelectedDice}
-                  updateSelectedDiceQty={this.updateSelectedDiceQty}
-                  name="D20"
-                  sides="20"
-                />
-                <Dice
-                  updateSelectedDice={this.updateSelectedDice}
-                  updateSelectedDiceQty={this.updateSelectedDiceQty}
-                  name="D100"
-                  sides="100"
-                />
+                {this.renderDice()}
               </div>
               <RollButton
                 sides={this.state.selectedDice}
@@ -315,10 +333,10 @@ class Session extends React.Component {
                 updateRollLog={this.updateRollLog}
               />
               <Total
-                total={this.calcTotalRoll()}
+                total={this.calcTotalRoll}
                 // onDiceClick={this.onDiceClick}
               />
-              <ResetButton text="Reset Dice" reset={this.resetDiceButtons} />
+              <ResetButton text="Reset Dice" reset={this.resetDiceButtons} resetQty={this.displayDice} />
               <ResetButton text="Reset Mods" reset={this.resetModButtons} />
               CHOOSE YOUR MODIFIERS
               <RollStats onChooseStat={this.onChooseStat} selectedStatName={this.state.statMod.stat} resetStatMod={this.resetStatMod} />
