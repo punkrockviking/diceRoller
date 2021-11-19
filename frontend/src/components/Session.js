@@ -150,7 +150,11 @@ class Session extends React.Component {
   // total component would take sum of all the object values, pass object as prop
   // createRollLogEntry would construct the roll log based on that object
 
-        // NEED TO TROUBLESHOOT. STATMOD IS BEING ADDED TWICE TO ALL ROLLS
+  makeRollObj = () => {
+    const rollObj = this.state
+    return rollObj
+  }
+
   calcTotalRoll = () => {
     // need to conditionally config rolls
     const { rawRoll, selectedDice, statMod, proficient } = this.state
