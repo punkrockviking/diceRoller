@@ -317,6 +317,7 @@ class Session extends React.Component {
         updateSelectedDice={this.updateSelectedDice}
         updateSelectedDiceQty={this.updateSelectedDiceQty}
         updateDiceQty={this.updateDiceQty}
+        key={die.name}
         name={die.name}
         sides={die.sides}
         qty={die.qty}
